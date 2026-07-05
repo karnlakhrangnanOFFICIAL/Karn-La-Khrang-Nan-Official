@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Home",
+    "men_team": "Men's Team",
+    "women_team": "Women's Team",
+    "trophy": "Trophy",
+    "icons": "i-Cons",
+    "story": "The Story Blue",
+    "lang_toggle": "TH"
+  },
+  "home": {
+    "title": "KANLAKHRANGNAN Official",
+    "fixtures": "Fixtures",
+    "results": "Results",
+    "no_fixtures": "No fixtures at the moment",
+    "no_results": "No results yet"
+  },
+  "common": {
+    "date": "Date",
+    "time": "Time",
+    "competition": "Competition",
+    "home": "Home",
+    "away": "Away",
+    "venue": "Venue",
+    "score": "Score",
+    "view_all": "View All",
+    "loading": "Loading..."
+  }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Story Blue - KANLAKHRANGNAN Official</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/kanlakhrangnan-logo.svg" alt="KANLAKHRANGNAN Logo">
+        <span>KANLAKHRANGNAN</span>
+      </a>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="men-team.html" data-i18n="nav.men_team">ทีมชาย</a></li>
+        <li><a href="women-team.html" data-i18n="nav.women_team">ทีมหญิง</a></li>
+        <li><a href="trophy.html" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
+        <li><a href="icons.html" data-i18n="nav.icons">i-Cons</a></li>
+        <li><a href="the-story-blue.html" class="active" data-i18n="nav.story">The Story Blue</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">📘 CLUB HISTORY</div>
+      <h1>The Story Blue</h1>
+      <p class="season">SINCE 1905</p>
+    </div>
+  </section>
+
+  <main class="main-container">
+    <div class="section-header">
+      <h2 class="section-title">📘 Chapters</h2>
+    </div>
+    <div class="story-grid" id="storyGrid">
+      <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 <span>KANLAKHRANGNAN Official</span>. All Rights Reserved.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    async function loadStory() {
+      const grid = document.getElementById('storyGrid');
+      try {
+        const response = await fetch('data/story-blue.json');
+        const chapters = await response.json();
+        
+        grid.innerHTML = chapters.map(ch => `
+          <a href="${ch.link}" class="story-card">
+            <div class="story-image">
+              <img src="${ch.image}" alt="Chapter ${ch.chapter}" onerror="this.src='assets/images/placeholder-story.svg'">
+              <span class="story-chapter">Chapter ${ch.chapter}</span>
+            </div>
+            <div class="story-info">
+              <h3>${ch.title}</h3>
+              <span class="story-year">${ch.year}</span>
+              <p>${ch.content.substring(0, 120)}...</p>
+            </div>
+          </a>
+        `).join('');
+      } catch (error) {
+        grid.innerHTML = '<div class="empty-state"><p>Error loading story</p></div>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadStory);
+  </script>
+</body>
+</html>

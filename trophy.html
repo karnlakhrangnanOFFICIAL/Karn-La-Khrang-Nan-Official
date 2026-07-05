@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trophy - KANLAKHRANGNAN Official</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/kanlakhrangnan-logo.svg" alt="KANLAKHRANGNAN Logo">
+        <span>KANLAKHRANGNAN</span>
+      </a>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="men-team.html" data-i18n="nav.men_team">ทีมชาย</a></li>
+        <li><a href="women-team.html" data-i18n="nav.women_team">ทีมหญิง</a></li>
+        <li><a href="trophy.html" class="active" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
+        <li><a href="icons.html" data-i18n="nav.icons">i-Cons</a></li>
+        <li><a href="the-story-blue.html" data-i18n="nav.story">The Story Blue</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🏆 TROPHY CABINET</div>
+      <h1>Trophy Cabinet</h1>
+      <p class="season">KANLAKHRANGNAN · ALL TROPHIES</p>
+    </div>
+  </section>
+
+  <main class="main-container">
+    <div class="section-header">
+      <h2 class="section-title">🏆 All Trophies</h2>
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterTrophies('all')">All</button>
+        <button class="filter-btn" onclick="filterTrophies('men')">👨 Men's</button>
+        <button class="filter-btn" onclick="filterTrophies('women')">👩 Women's</button>
+      </div>
+    </div>
+    <div class="trophy-grid" id="trophyGrid">
+      <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 <span>KANLAKHRANGNAN Official</span>. All Rights Reserved.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    let allTrophies = [];
+
+    async function loadTrophies() {
+      const grid = document.getElementById('trophyGrid');
+      try {
+        const response = await fetch('data/trophy.json');
+        allTrophies = await response.json();
+        displayTrophies('all');
+      } catch (error) {
+        grid.innerHTML = '<div class="empty-state"><p>Error loading trophies</p></div>';
+      }
+    }
+
+    function displayTrophies(filter) {
+      const grid = document.getElementById('trophyGrid');
+      const filtered = filter === 'all' ? allTrophies : allTrophies.filter(t => t.team === filter);
+      
+      grid.innerHTML = filtered.map(t => `
+        <a href="${t.link}" class="trophy-card">
+          <div class="trophy-image">
+            <img src="${t.image}" alt="${t.name}" onerror="this.src='assets/images/placeholder-trophy.svg'">
+          </div>
+          <div class="trophy-info">
+            <span class="trophy-team ${t.team}">${t.team === 'men' ? '👨' : '👩'} ${t.team === 'men' ? "Men's" : "Women's"}</span>
+            <h3>${t.name}</h3>
+            <p>${t.competition} · ${t.season}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    function filterTrophies(filter) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      displayTrophies(filter);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadTrophies);
+  </script>
+</body>
+</html>

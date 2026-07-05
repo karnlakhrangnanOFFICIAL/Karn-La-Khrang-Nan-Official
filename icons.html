@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>i-Cons - KANLAKHRANGNAN Official</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/kanlakhrangnan-logo.svg" alt="KANLAKHRANGNAN Logo">
+        <span>KANLAKHRANGNAN</span>
+      </a>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="men-team.html" data-i18n="nav.men_team">ทีมชาย</a></li>
+        <li><a href="women-team.html" data-i18n="nav.women_team">ทีมหญิง</a></li>
+        <li><a href="trophy.html" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
+        <li><a href="icons.html" class="active" data-i18n="nav.icons">i-Cons</a></li>
+        <li><a href="the-story-blue.html" data-i18n="nav.story">The Story Blue</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🤴 CLUB LEGENDS</div>
+      <h1>i-Cons</h1>
+      <p class="season">KANLAKHRANGNAN · CLUB LEGENDS</p>
+    </div>
+  </section>
+
+  <main class="main-container">
+    <div class="section-header">
+      <h2 class="section-title">🤴 Club Legends</h2>
+    </div>
+    <div class="icons-grid" id="iconsGrid">
+      <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 <span>KANLAKHRANGNAN Official</span>. All Rights Reserved.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    async function loadIcons() {
+      const grid = document.getElementById('iconsGrid');
+      try {
+        const response = await fetch('data/icons.json');
+        const icons = await response.json();
+        
+        grid.innerHTML = icons.map(icon => `
+          <a href="${icon.link}" class="icon-card">
+            <div class="icon-image">
+              <img src="${icon.image}" alt="${icon.name}" onerror="this.src='assets/images/placeholder-player.svg'">
+            </div>
+            <div class="icon-info">
+              <span class="icon-nationality">${icon.nationality.toUpperCase()}</span>
+              <h3>${icon.name}</h3>
+              <p>${icon.position} · ${icon.period}</p>
+              <div class="icon-stats">
+                <span>👕 ${icon.appearances} apps</span>
+                <span>⚽ ${icon.goals} goals</span>
+              </div>
+            </div>
+          </a>
+        `).join('');
+      } catch (error) {
+        grid.innerHTML = '<div class="empty-state"><p>Error loading icons</p></div>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadIcons);
+  </script>
+</body>
+</html>

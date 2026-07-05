@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Men's Team - KANLAKHRANGNAN Official</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="databases/logo/teams/england_chelsea.football-logos.cc.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/kanlakhrangnan-logo.svg" alt="KANLAKHRANGNAN Logo">
+        <span>KANLAKHRANGNAN</span>
+      </a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="men-team.html" class="active" data-i18n="nav.men_team">ทีมชาย</a></li>
+        <li><a href="women-team.html" data-i18n="nav.women_team">ทีมหญิง</a></li>
+        <li><a href="trophy.html" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
+        <li><a href="icons.html" data-i18n="nav.icons">i-Cons</a></li>
+        <li><a href="the-story-blue.html" data-i18n="nav.story">The Story Blue</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle" data-i18n="nav.lang_toggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">⚽ MEN'S TEAM</div>
+      <h1>Chelsea</h1>
+      <p class="season">MEN'S TEAM · 2026/27</p>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-container">
+
+    <!-- TAB NAVIGATION -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="fixtures">📅 Fixtures</button>
+      <button class="tab-btn" data-tab="results">📊 Results</button>
+      <button class="tab-btn" data-tab="tables">🏆 Tables</button>
+      <button class="tab-btn" data-tab="players">👕 Players</button>
+    </div>
+
+    <!-- FIXTURES TAB -->
+    <section id="tab-fixtures" class="tab-content active">
+      <div class="section-header">
+        <h2 class="section-title">📅 Fixtures</h2>
+        <a href="men-team.html" class="view-all">All Fixtures</a>
+      </div>
+      <div class="cards-grid" id="menFixturesContainer">
+        <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+      </div>
+    </section>
+
+    <!-- RESULTS TAB -->
+    <section id="tab-results" class="tab-content">
+      <div class="section-header">
+        <h2 class="section-title">📊 Results</h2>
+        <a href="men-team.html#results" class="view-all">All Results</a>
+      </div>
+      <div class="cards-grid" id="menResultsContainer">
+        <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+      </div>
+    </section>
+
+    <!-- TABLES TAB -->
+    <section id="tab-tables" class="tab-content">
+      <div class="section-header">
+        <h2 class="section-title">🏆 Premier League Table</h2>
+      </div>
+      <div class="table-container" id="menTableContainer">
+        <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+      </div>
+    </section>
+
+    <!-- PLAYERS TAB -->
+    <section id="tab-players" class="tab-content">
+      <div class="section-header">
+        <h2 class="section-title">👕 Players</h2>
+      </div>
+      <div class="players-grid" id="menPlayersContainer">
+        <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/kanlakhrangnan-logo.svg" alt="kanlakhrangnan logo" style="height:40px;">
+        <span>KANLAKHRANGNAN</span>
+      </div>
+      <p>© 2026 <span>KANLAKHRANGNAN Official</span>. All Rights Reserved.</p>
+      <p class="footer-disclaimer">This is an unofficial fan website. Not affiliated with Chelsea FC.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/team.js"></script>
+</body>
+</html>
