@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Story Blue - KANLAKHRANGNAN Official</title>
+  <title>The Story Blue · KARN LA KHRANg NAN Official</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/images/kanlakhrangnan-logo.png" type="image/png">
 </head>
 <body>
 
+  <!-- ==================== NAVIGATION ==================== -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="assets/images/kanlakhrangnan-logo.svg" alt="KANLAKHRANGNAN Logo">
-        <span>KANLAKHRANGNAN</span>
+        <img src="assets/images/kanlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo">
+        <span>KARN LA KHRANg NAN</span>
       </a>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" data-i18n="nav.home">หน้าแรก</a></li>
         <li><a href="men-team.html" data-i18n="nav.men_team">ทีมชาย</a></li>
@@ -22,11 +26,13 @@
         <li><a href="trophy.html" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
         <li><a href="icons.html" data-i18n="nav.icons">i-Cons</a></li>
         <li><a href="the-story-blue.html" class="active" data-i18n="nav.story">The Story Blue</a></li>
-        <li><a href="#" class="lang-toggle" id="langToggle">EN</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle" data-i18n="nav.lang_toggle">EN</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- ==================== HERO SECTION ==================== -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-badge">📘 CLUB HISTORY</div>
@@ -35,12 +41,20 @@
     </div>
   </section>
 
+  <!-- ==================== MAIN CONTENT ==================== -->
   <main class="main-container">
     <div class="section-header">
-      <h2 class="section-title">📘 Chapters</h2>
+      <h2 class="section-title">
+        <span class="icon">📘</span>
+        <span>Chapters</span>
+      </h2>
+      <p class="section-subtitle">เลือกบทเพื่ออ่านเรื่องราวของ Chelsea FC</p>
     </div>
     <div class="story-grid" id="storyGrid">
-      <div class="loading"><div class="spinner"></div><p>Loading...</p></div>
+      <div class="loading">
+        <div class="spinner"></div>
+        <p data-i18n="common.loading">กำลังโหลด...</p>
+      </div>
     </div>
   </main>
 
@@ -48,37 +62,45 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-logo">
-        <img src="assets/images/kanlakhrangnan-logo.svg" alt="kanlakhrangnan logo" style="height:40px;">
-        <span>KARNLAKHRANGNAN</span>
+        <img src="assets/images/kanlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo" style="height:40px;">
+        <span>KARN LA KHRANg NAN</span>
       </div>
-      <p>© 2026 <span>KARN LA KHRANG NAN Official</span>. All Rights Reserved.</p>
+      <p>© 2026 <span>KARN LA KHRANg NAN Official</span>. All Rights Reserved.</p>
       <p class="footer-disclaimer">This is an unofficial fan website. Not affiliated with Chelsea FC.</p>
     </div>
   </footer>
 
+  <!-- ==================== SCRIPTS ==================== -->
   <script src="assets/js/main.js"></script>
   <script>
     async function loadStory() {
       const grid = document.getElementById('storyGrid');
       try {
         const response = await fetch('data/story-blue.json');
+        if (!response.ok) throw new Error('Network response was not ok');
         const chapters = await response.json();
-        
+
+        if (!Array.isArray(chapters) || chapters.length === 0) {
+          grid.innerHTML = '<div class="empty-state"><span class="empty-icon">📭</span><p>No chapters available yet.</p></div>';
+          return;
+        }
+
         grid.innerHTML = chapters.map(ch => `
           <a href="${ch.link}" class="story-card">
             <div class="story-image">
-              <img src="${ch.image}" alt="Chapter ${ch.chapter}" onerror="this.src='assets/images/placeholder-story.svg'">
+              <img src="${ch.image}" alt="Chapter ${ch.chapter}" onerror="this.src='assets/images/placeholder-story.svg'" loading="lazy">
               <span class="story-chapter">Chapter ${ch.chapter}</span>
             </div>
             <div class="story-info">
               <h3>${ch.title}</h3>
               <span class="story-year">${ch.year}</span>
-              <p>${ch.content.substring(0, 120)}...</p>
+              <p>${(ch.content || '').substring(0, 150)}...</p>
             </div>
           </a>
         `).join('');
       } catch (error) {
-        grid.innerHTML = '<div class="empty-state"><p>Error loading story</p></div>';
+        grid.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error loading story chapters. Please try again later.</p></div>';
+        console.error('Failed to load story-blue.json:', error);
       }
     }
 

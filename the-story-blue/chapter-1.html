@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CHELSEA TH FANs — กาลครั้งนั้น Kann Krung Nan News</title>
+  <title>บทที่ ๑ · The Story Blue · KARN LA KHRANg NAN Official</title>
+  <link rel="icon" href="../assets/images/kanlakhrangnan-logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Sarabun:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
   <style>
     /* ============================================
        RESET & VARIABLES
@@ -41,6 +43,7 @@
       font-size: 18px;
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
+      padding-top: 70px; /* สำหรับ Navbar */
     }
 
     /* ============================================
@@ -54,6 +57,7 @@
       overflow: hidden;
       display: flex;
       align-items: flex-end;
+      margin-top: -70px; /* ชดเชย padding-top */
     }
 
     .hero__bg {
@@ -374,6 +378,55 @@
     }
 
     /* ============================================
+       CHAPTER NAVIGATION BUTTONS
+    ============================================ */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chapter-nav a {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .chapter-nav__back {
+      background: transparent;
+      color: var(--ink-muted);
+      border: 1px solid var(--rule);
+    }
+
+    .chapter-nav__back:hover {
+      background: var(--off-white);
+      color: var(--ink);
+      border-color: var(--ink-muted);
+    }
+
+    .chapter-nav__next {
+      background: var(--blue);
+      color: var(--white);
+      border: 1px solid var(--blue);
+    }
+
+    .chapter-nav__next:hover {
+      background: var(--blue-light);
+      border-color: var(--blue-light);
+      color: var(--white);
+    }
+
+    /* ============================================
        FOOTER
     ============================================ */
     .site-footer {
@@ -412,60 +465,32 @@
     @media (max-width: 500px) {
       .pull-quote { padding: 18px 20px; }
     }
-  
-    /* ============================================
-       NAVIGATION MENU STYLES (เมนูนำทาง)
-    ============================================ */
-    .main-nav {
-      background-color: var(--blue, #034694);
-      padding: 10px 20px;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .nav-list {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-    .nav-list li a {
-      color: var(--white, #f5f2ec);
-      text-decoration: none;
-      font-weight: 600;
-      font-family: 'Sarabun', sans-serif;
-      padding: 6px 12px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      font-size: 14px;
-    }
-    .nav-list li a:hover {
-      background-color: var(--gold, #c8a84b);
-      color: var(--ink, #1a1410);
-    }
   </style>
 </head>
 <body>
-  <nav class="main-nav">
-    <ul class="nav-list">
-      <li><a href="index.html">หน้าแรก</a></li>
-      <li><a href="Chapter1.html">บทที่ 1</a></li>
-      <li><a href="Chapter2.html">บทที่ 2</a></li>
-      <li><a href="Chapter3.html">บทที่ 3</a></li>
-      <li><a href="Chapter4.html">บทที่ 4</a></li>
-      <li><a href="Chapter5.html">บทที่ 5</a></li>
-      <li><a href="Chapter6.html">บทที่ 6</a></li>
-      <li><a href="Chapter7.html">บทที่ 7</a></li>
-      <li><a href="Chapter8.html">บทที่ 8</a></li>
-      <li><a href="Chapter9.html">บทที่ 9</a></li>
-    </ul>
-  </nav>
 
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">
+        <img src="../assets/images/kanlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo">
+        <span>KARN LA KHRANg NAN</span>
+      </a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">หน้าแรก</a></li>
+        <li><a href="../men-team.html">ทีมชาย</a></li>
+        <li><a href="../women-team.html">ทีมหญิง</a></li>
+        <li><a href="../trophy.html">ถ้วยรางวัล</a></li>
+        <li><a href="../icons.html">i-Cons</a></li>
+        <li><a href="../the-story-blue.html" class="active">The Story Blue</a></li>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- ===================== HERO ===================== -->
   <header class="hero">
@@ -473,14 +498,12 @@
     <div class="hero__overlay"></div>
 
     <div class="hero__content">
-      <img src="https://i.postimg.cc/9QCWzTSV/Logo-CHELSEA-TH-FANs.png" class="hero__logo">
-      <p class="hero__kicker">Chelsea TH FANs &nbsp;·&nbsp; Kann Krung Nan News</p>
+      <img src="https://i.postimg.cc/9QCWzTSV/Logo-CHELSEA-TH-FANs.png" class="hero__logo" alt="Chelsea TH FANs Logo">
+      <p class="hero__kicker">Chelsea TH FANs · Kann Krung Nan News</p>
       <h1 class="hero__title">กาลครั้งนั้น<br><em>Kann Krung Nan News!</em></h1>
       <p class="hero__subtitle">ผู้เขียน: อิอิแอแอ</p>
       <div class="hero__rule"></div>
     </div>
-
-
   </header>
 
   <!-- ===================== ARTICLE ===================== -->
@@ -618,295 +641,73 @@
       <div class="chapter-end">
         <div class="chapter-end__ornament">⚽</div>
         <span class="chapter-end__text">— จบบทที่ ๑ —</span>
+
+                <span class="chapter-end__text">— จบบทที่ ๑ —</span>
+
+        <!-- ✅ ปุ่มนำทาง -->
+        <div class="chapter-nav">
+          <a href="../the-story-blue.html" class="chapter-nav__back">← กลับหน้าสารบัญ</a>
+          <a href="chapter-2.html" class="chapter-nav__next">อ่านบทที่ ๒ →</a>
+        </div>
       </div>
 
     </div><!-- /.article__inner -->
   </main>
-<!-- =========================================
-     CHELSEA FLOATING CLOCK
-========================================= -->
 
-<div class="floating-clock">
-
-  <!-- Thailand -->
-  <div class="floating-clock__section">
-    <div class="floating-clock__label">🇹🇭 ไทย</div>
-    <div class="floating-clock__date" id="th-date">--</div>
-    <div class="floating-clock__time" id="th-time">--:--:--</div>
-  </div>
-
-  <div class="floating-clock__divider"></div>
-
-  <!-- London -->
-  <div class="floating-clock__section">
-    <div class="floating-clock__label">🇬🇧 London</div>
-    <div class="floating-clock__date" id="uk-date">--</div>
-    <div class="floating-clock__time" id="uk-time">--:--:--</div>
-  </div>
-
-</div>
-
-<style>
-  :root{
-    --blue: #034694;
-    --blue-dark: #021f45;
-
-    --gold: #c8a84b;
-    --gold-light: #e8c97a;
-
-    --white: #f5f2ec;
-  }
-
-  /* =========================================
-     FLOATING CLOCK
-  ========================================= */
-
-  .floating-clock{
-    position: fixed;
-
-    top: 72px;
-    right: 18px;
-
-    z-index: 99999;
-
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    padding: 12px 18px;
-
-    background:
-      linear-gradient(
-        135deg,
-        rgba(2,31,69,0.95),
-        rgba(3,70,148,0.88)
-      );
-
-    border: 1px solid rgba(200,168,75,0.9);
-
-    border-radius: 10px;
-
-    backdrop-filter: blur(10px);
-
-    box-shadow:
-      0 6px 18px rgba(0,0,0,0.45),
-      0 0 18px rgba(3,70,148,0.35);
-
-    overflow: hidden;
-
-    transition:
-      transform .3s ease,
-      box-shadow .3s ease;
-  }
-
-  /* top glow line */
-  .floating-clock::before{
-    content: '';
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 2px;
-
-    background:
-      linear-gradient(
-        to right,
-        transparent,
-        var(--gold-light),
-        transparent
-      );
-
-    opacity: .9;
-  }
-
-  .floating-clock:hover{
-    transform: translateY(-4px);
-
-    box-shadow:
-      0 10px 28px rgba(0,0,0,0.55),
-      0 0 24px rgba(3,70,148,0.45);
-  }
-
-  .floating-clock__section{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    position: relative;
-    z-index: 2;
-  }
-
-  .floating-clock__divider{
-    width: 1px;
-    height: 58px;
-
-    background:
-      linear-gradient(
-        to bottom,
-        transparent,
-        var(--gold),
-        transparent
-      );
-
-    opacity: .45;
-  }
-
-  .floating-clock__label{
-    font-size: 10px;
-    font-weight: 700;
-
-    color: var(--gold-light);
-
-    text-transform: uppercase;
-    letter-spacing: .18em;
-
-    margin-bottom: 3px;
-
-    text-shadow: 0 0 8px rgba(232,201,122,.25);
-  }
-
-  .floating-clock__date{
-    font-size: 12px;
-    font-weight: 400;
-
-    color: rgba(245,242,236,0.78);
-
-    margin-bottom: 3px;
-
-    letter-spacing: .04em;
-  }
-
-  .floating-clock__time{
-    font-size: 17px;
-    font-weight: 700;
-
-    color: var(--gold);
-
-    font-family:
-      'Sarabun',
-      'Consolas',
-      monospace;
-
-    letter-spacing: .08em;
-
-    text-shadow:
-      0 0 8px rgba(200,168,75,.28),
-      0 0 18px rgba(200,168,75,.18);
-  }
-
-  /* =========================================
-     MOBILE
-  ========================================= */
-
-  @media (max-width: 768px){
-
-    .floating-clock{
-      top: 68px;
-      right: 10px;
-
-      padding: 9px 13px;
-
-      transform: scale(.88);
-      transform-origin: top right;
-    }
-
-    .floating-clock:hover{
-      transform:
-        scale(.88)
-        translateY(-3px);
-    }
-
-    .floating-clock__time{
-      font-size: 15px;
-    }
-
-  }
-</style>
-
-<script>
-
-  function updateFloatingClocks(){
-
-    const now = new Date();
-
-    // Lion Theme
-    const applyLionTheme = (str) => {
-      return str.replace(/0/g, '🦁');
-    };
-
-    const dateOptions = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    };
-
-    const timeOptions = {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
-    };
-
-    // Thailand
-    const thDateRaw = new Intl.DateTimeFormat(
-      'th-TH',
-      {
-        ...dateOptions,
-        timeZone: 'Asia/Bangkok'
-      }
-    ).format(now);
-
-    const thTimeRaw = new Intl.DateTimeFormat(
-      'th-TH',
-      {
-        ...timeOptions,
-        timeZone: 'Asia/Bangkok'
-      }
-    ).format(now);
-
-    document.getElementById('th-date').textContent =
-      applyLionTheme(thDateRaw);
-
-    document.getElementById('th-time').textContent =
-      applyLionTheme(thTimeRaw) + ' น.';
-
-    // London
-    const ukDateRaw = new Intl.DateTimeFormat(
-      'en-GB',
-      {
-        ...dateOptions,
-        timeZone: 'Europe/London'
-      }
-    ).format(now);
-
-    const ukTimeRaw = new Intl.DateTimeFormat(
-      'en-GB',
-      {
-        ...timeOptions,
-        timeZone: 'Europe/London'
-      }
-    ).format(now);
-
-    document.getElementById('uk-date').textContent =
-      applyLionTheme(ukDateRaw);
-
-    document.getElementById('uk-time').textContent =
-      applyLionTheme(ukTimeRaw);
-  }
-
-  updateFloatingClocks();
-  setInterval(updateFloatingClocks, 1000);
-</script>
   <!-- ===================== FOOTER ===================== -->
-  <footer class="site-footer">
-    <div class="hero__inner">
-  <img src="https://i.postimg.cc/9QCWzTSV/Logo-CHELSEA-TH-FANs.png" class="hero__logo">
-    <span class="site-footer__name">CHELSEA TH FANs</span>
-    <span>Kann Krung Nan News &nbsp;·&nbsp; ผู้เขียน: อิอิแอแอ</span>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../assets/images/kanlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo" style="height:40px;">
+        <span>KARN LA KHRANg NAN</span>
+      </div>
+      <p>© 2026 <span>KARN LA KHRANg NAN Official</span>. All Rights Reserved.</p>
+      <p style="margin-top: 8px; color: var(--gold); font-size: 0.8rem;">
+        บทความโดย <strong>Chelsea TH FANs</strong> · Kann Krung Nan News · ผู้เขียน: อิอิแอแอ
+      </p>
+      <p class="footer-disclaimer">This is an unofficial fan website. Not affiliated with Chelsea FC.</p>
+    </div>
   </footer>
 
+  <!-- =========================================
+       CHELSEA FLOATING CLOCK
+  ========================================= -->
+  <div class="floating-clock">
+    <div class="floating-clock__section">
+      <div class="floating-clock__label">🇹🇭 ไทย</div>
+      <div class="floating-clock__date" id="th-date">--</div>
+      <div class="floating-clock__time" id="th-time">--:--:--</div>
+    </div>
+    <div class="floating-clock__divider"></div>
+    <div class="floating-clock__section">
+      <div class="floating-clock__label">🇬🇧 London</div>
+      <div class="floating-clock__date" id="uk-date">--</div>
+      <div class="floating-clock__time" id="uk-time">--:--:--</div>
+    </div>
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Floating Clock
+    function updateFloatingClocks() {
+      const now = new Date();
+      const applyLionTheme = (str) => str.replace(/0/g, '🦁');
+      const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+      const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+      const thDateRaw = new Intl.DateTimeFormat('th-TH', { ...dateOptions, timeZone: 'Asia/Bangkok' }).format(now);
+      const thTimeRaw = new Intl.DateTimeFormat('th-TH', { ...timeOptions, timeZone: 'Asia/Bangkok' }).format(now);
+      document.getElementById('th-date').textContent = applyLionTheme(thDateRaw);
+      document.getElementById('th-time').textContent = applyLionTheme(thTimeRaw) + ' น.';
+
+      const ukDateRaw = new Intl.DateTimeFormat('en-GB', { ...dateOptions, timeZone: 'Europe/London' }).format(now);
+      const ukTimeRaw = new Intl.DateTimeFormat('en-GB', { ...timeOptions, timeZone: 'Europe/London' }).format(now);
+      document.getElementById('uk-date').textContent = applyLionTheme(ukDateRaw);
+      document.getElementById('uk-time').textContent = applyLionTheme(ukTimeRaw);
+    }
+    updateFloatingClocks();
+    setInterval(updateFloatingClocks, 1000);
+  </script>
 </body>
 </html>
