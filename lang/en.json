@@ -6,14 +6,16 @@
     "trophy": "Trophy",
     "icons": "i-Cons",
     "story": "The Story Blue",
+    "about": "About Us",
     "lang_toggle": "TH"
   },
   "home": {
-    "title": "KANLAKHRANGNAN Official",
+    "title": "KARN LA KHRANg NAN Official",
     "fixtures": "Fixtures",
     "results": "Results",
     "no_fixtures": "No fixtures at the moment",
-    "no_results": "No results yet"
+    "no_results": "No results yet",
+    "quick_links": "Quick Links"
   },
   "common": {
     "date": "Date",

@@ -6,14 +6,16 @@
     "trophy": "ถ้วยรางวัล",
     "icons": "i-Cons",
     "story": "The Story Blue",
+    "about": "เกี่ยวกับเรา",
     "lang_toggle": "EN"
   },
   "home": {
-    "title": "KANLAKHRANGNAN Official",
+    "title": "KARN LA KHRANg NAN Official",
     "fixtures": "โปรแกรมแข่งขัน",
     "results": "ผลการแข่งขัน",
     "no_fixtures": "ไม่มีโปรแกรมแข่งขันในขณะนี้",
-    "no_results": "ยังไม่มีผลการแข่งขัน"
+    "no_results": "ยังไม่มีผลการแข่งขัน",
+    "quick_links": "ลิงก์ด่วน"
   },
   "common": {
     "date": "วันที่",

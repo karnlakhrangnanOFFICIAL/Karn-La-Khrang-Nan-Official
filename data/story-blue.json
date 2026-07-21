@@ -1,0 +1,19 @@
+[
+  {
+    "chapter": 1,
+    "title": "จากจุดเริ่มต้นอันแสนต่ำต้อยของเรา…",
+    "year": "1905",
+    "content": "ในวันที่ 13 เมษายน ค.ศ. 1906 ท่ามกลางแสงแดดอันสดใส...",
+    "image": "assets/images/story/chapter-1.jpg",
+    "link": "the-story-blue/chapter-1.html"
+  },
+  {
+    "chapter": 2,
+    "title": "...",
+    "year": "1907",
+    "content": "...",
+    "image": "assets/images/story/chapter-2.jpg",
+    "link": "the-story-blue/chapter-2.html"
+  }
+  // ... ถึง chapter 9
+]
