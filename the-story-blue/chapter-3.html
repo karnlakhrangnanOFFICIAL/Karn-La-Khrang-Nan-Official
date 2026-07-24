@@ -131,7 +131,7 @@
     .img-block img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
     .img-block figcaption { font-size: 14px; color: var(--ink-muted); margin-top: 12px; font-style: italic; }
 
-    /* Footer & Navigation */
+    /* Chapter Navigation */
     .chapter-end { text-align: center; margin: 64px 0 0; padding-top: 40px; border-top: 1px solid var(--rule); }
     .chapter-end__ornament { font-size: 28px; color: var(--gold); letter-spacing: 0.3em; }
     .chapter-end__text {
@@ -151,41 +151,49 @@
     .chapter-nav__back:hover { background: var(--off-white); color: var(--ink); border-color: var(--ink-muted); }
     .chapter-nav__next { background: var(--blue); color: var(--white); border: 1px solid var(--blue); }
     .chapter-nav__next:hover { background: var(--blue-light); border-color: var(--blue-light); color: var(--white); }
-    /* Footer & Navigation */
-    .chapter-end { text-align: center; margin: 64px 0 0; padding-top: 40px; border-top: 1px solid var(--rule); }
-    .chapter-end__ornament { font-size: 28px; color: var(--gold); letter-spacing: 0.3em; }
-    .chapter-end__text { display: block; margin-top: 12px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
-    .chapter-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; flex-wrap: wrap; gap: 12px; }
-    .chapter-nav a { display: inline-block; padding: 10px 24px; border-radius: 4px; font-family: 'Sarabun', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; }
-    .chapter-nav__back { background: transparent; color: var(--ink-muted); border: 1px solid var(--rule); }
-    .chapter-nav__back:hover { background: var(--off-white); color: var(--ink); border-color: var(--ink-muted); }
-    .chapter-nav__next { background: var(--blue); color: var(--white); border: 1px solid var(--blue); }
-    .chapter-nav__next:hover { background: var(--blue-light); border-color: var(--blue-light); color: var(--white); }
-    
-    /* อัปเดต CSS Footer ใหม่ให้มีรูปภาพพื้นหลัง */
-    .site-footer { 
-      position: relative; 
-      color: var(--off-white); 
-      padding: 60px 20px; 
-      text-align: center; 
-      font-size: 14px; 
+
+    /* Footer (Fixed to dark theme as requested) */
+    .footer {
+      background: var(--ink);
+      color: var(--white);
+      padding: 60px 20px 40px;
+      text-align: center;
       margin-top: 60px;
-      overflow: hidden;
+      position: relative;
     }
-    .site-footer__bg {
-      position: absolute; inset: 0; 
-      background-image: url('https://i.imgur.com/d7cGptr.jpeg');
-      background-size: cover; background-position: center 70%; 
-      filter: brightness(0.25) saturate(0.8);
-      z-index: 0;
+    .footer-content {
+      max-width: var(--col-max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
     }
-    .site-footer__content {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: center;
+    .footer-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
     }
-    .site-footer__name { 
-      display: block; font-weight: 700; color: var(--gold); 
-      margin: 15px 0 5px; letter-spacing: 1px; 
+    .footer-logo img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+    .footer-logo span {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .footer p {
+      font-size: 0.9rem;
+      color: rgba(245, 242, 236, 0.7);
+    }
+    .footer p strong {
+      color: var(--gold);
     }
 
     /* Lang Toggle Button */
@@ -412,11 +420,11 @@
     </div>
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-logo">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCI+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMjAwIiByPSIxOTAiIGZpbGw9IiMwMzQ2OTQiIHN0cm9rZT0iI2M4YTg0YiIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iMTcyIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOGE4NGIiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTUiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYzhhODRiIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5LQVJOPC90ZXh0Pjx0ZXh0IHg9IjIwMCIgeT0iMjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYzhhODRiIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQSBLSFJBTmc8L3RleHQ+PHRleHQgeD0iMjAwIiB5PSIyODUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1NSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNjOGE4NGIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5BTjwvdGV4dD48bGluZSB4MT0iODAiIHkxPSIzMTUiIHgyPSIzMjAiIHkyPSIzMTUiIHN0cm9rZT0iI2M4YTg0YiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iMjAwIiB5PSIzNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNjOGE4NGIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk9mZmljaWFsPC90ZXh0Pjwvc3ZnPg==" alt="KARN LA KHRANg NAN Logo" style="height:60px;">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCI+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMjAwIiByPSIxOTAiIGZpbGw9IiMwMzQ2OTQiIHN0cm9rZT0iI2M4YTg0YiIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iMTcyIiBmaWxsPSJub25lIiBzdHJva2U9IiNjOGE4NGIiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTUiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYzhhODRiIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5LQVJOPC90ZXh0Pjx0ZXh0IHg9IjIwMCIgeT0iMjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYzhhODRiIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MQSBLSFJBTmc8L3RleHQ+PHRleHQgeD0iMjAwIiB5PSIyODUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI1NSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNjOGE4NGIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk5BTjwvdGV4dD48bGluZSB4MT0iODAiIHkxPSIzMTUiIHgyPSIzMjAiIHkyPSIzMTUiIHN0cm9rZT0iI2M4YTg0YiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iMjAwIiB5PSIzNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNjOGE4NGIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk9mZmljaWFsPC90ZXh0Pjwvc3ZnPg==" alt="KARN LA KHRANg NAN Logo" style="height:40px;">
         <span>KARN LA KHRANg NAN</span>
       </div>
       <p>© 2026 <span>KARN LA KHRANg NAN Official</span>. All Rights Reserved.</p>
