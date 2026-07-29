@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Match Detail · KARN LA KHRANg NAN Official</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/images/kanlakhrangnan-logo.png" type="image/png">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/kanlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo">
+        <span>KARN LA KHRANg NAN</span>
+      </a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="men-team.html" data-i18n="nav.men_team">ทีมชาย</a></li>
+        <li><a href="women-team.html" data-i18n="nav.women_team">ทีมหญิง</a></li>
+        <li><a href="trophy.html" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
+        <li><a href="icons.html" data-i18n="nav.icons">i-Cons</a></li>
+        <li><a href="the-story-blue.html" data-i18n="nav.story">The Story Blue</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle" data-i18n="nav.lang_toggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==================== MAIN ==================== -->
+  <main class="main-container">
+    <div id="matchContent" class="loading">
+      <div class="spinner"></div>
+      <p data-i18n="common.loading">กำลังโหลด...</p>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/kanlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo" style="height:40px;">
+        <span>KARN LA KHRANg NAN</span>
+      </div>
+      <p>© 2026 <span>KARN LA KHRANg NAN Official</span>. All Rights Reserved.</p>
+      <p class="footer-disclaimer">This is an unofficial fan website. Not affiliated with Chelsea FC.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    // ---------- HELPERS (not in main.js) ----------
+    function formatDate(dateString, lang) {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return dateString;
+      if (lang === 'th') {
+        const thaiMonths = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+        const thaiYear = date.getFullYear() + 543;
+        return `${date.getDate()} ${thaiMonths[date.getMonth()]} ${thaiYear}`;
+      }
+      return date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function formatCompetitionName(name) {
+      if (!name) return '';
+      return name.replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    // ---------- LOAD & RENDER ----------
+    async function loadMatchDetail() {
+      const container = document.getElementById('matchContent');
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const matchId = params.get('id');
+        if (!matchId) {
+          container.innerHTML = '<div class="not-found"><p>⚠️ ไม่พบรหัสการแข่งขัน</p></div>';
+          return;
+        }
+
+        const response = await fetch('data/fixtures-men.json');
+        const data = await response.json();
+        let allMatches = [];
+        for (const competition in data) {
+          if (Array.isArray(data[competition])) {
+            data[competition].forEach(match => {
+              allMatches.push({ ...match, competition_name: competition });
+            });
+          }
+        }
+
+        const match = allMatches.find(m => m.id === parseInt(matchId, 10));
+        if (!match) {
+          container.innerHTML = '<div class="not-found"><p>⚠️ ไม่พบข้อมูลการแข่งขันนี้</p></div>';
+          return;
+        }
+
+        renderMatchDetail(match, container);
+      } catch (error) {
+        container.innerHTML = '<div class="not-found"><p>⚠️ ไม่สามารถโหลดข้อมูลได้</p></div>';
+      }
+    }
+
+    function renderMatchDetail(match, container) {
+      const compName = formatCompetitionName(match.competition_name || match.competition);
+      const displayTime = (match.time === '00:00' || match.time === 'TBC' || !match.time) ? 'TBC' : match.time.substring(0,5);
+
+      // Channels
+      const channelsHtml = (match.channels && match.channels.length > 0)
+        ? `<div class="channels-section">
+            <h3 data-i18n="match.watch">📺 ช่องทางการรับชม</h3>
+            <div class="channels-list">${match.channels.map(ch =>
+              `<span class="channel-badge" title="${ch.name}">
+                ${ch.logo ? `<img src="${ch.logo}" alt="${ch.name}" class="channel-logo" onerror="this.style.display='none'">` : ''}
+                <span class="channel-name">${ch.name}</span>
+              </span>`
+            ).join('')}</div>
+          </div>`
+        : '';
+
+      // Video
+      const videoHtml = match.video
+        ? `<div class="video-section">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube-nocookie.com/embed/${match.video.id}" title="${match.video.title || ''}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="video-caption" data-lang-th="${match.video.desc_th || ''}" data-lang-en="${match.video.desc_en || ''}">${match.video.desc_th || ''}</p>
+          </div>`
+        : '';
+
+      // Score
+      const scoreHtml = match.status === 'completed'
+        ? `<div class="final-score">
+             <span class="home-score">${match.home_score}</span>
+             <span class="score-divider">-</span>
+             <span class="away-score">${match.away_score}</span>
+           </div>`
+        : `<div class="vs-text">VS</div>`;
+
+      // Goals
+      const goalsHtml = match.status === 'completed' && match.goals && match.goals.length
+        ? `<div class="goals-section">
+            <h3>⚽ ผู้ทำประตู</h3>
+            <div class="goals-grid">
+              <div class="goals-col">
+                <strong>${match.home_team}</strong>
+                <ul>
+                  ${match.goals.filter(g => g.team === 'home').map(g => `<li>${g.player} ${g.minute}'</li>`).join('')}
+                </ul>
+              </div>
+              <div class="goals-col">
+                <strong>${match.away_team}</strong>
+                <ul>
+                  ${match.goals.filter(g => g.team === 'away').map(g => `<li>${g.player} ${g.minute}'</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>`
+        : '';
+
+      container.innerHTML = `
+        <a href="men-team.html" class="back-link">← กลับหน้าโปรแกรม</a>
+        <div class="match-detail">
+          <div class="meta">
+            <span>📅 ${formatDate(match.date, window.currentLang || 'th')}</span>
+            <span>· ${displayTime}</span>
+            <span>· ${compName}</span>
+            <span>📍 ${match.venue}</span>
+          </div>
+          <div class="match-versus">
+            <div class="team-block">
+              <img src="${match.home_logo}" alt="${match.home_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+              <div class="team-name">${match.home_team}</div>
+            </div>
+            ${scoreHtml}
+            <div class="team-block">
+              <img src="${match.away_logo}" alt="${match.away_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+              <div class="team-name">${match.away_team}</div>
+            </div>
+          </div>
+          ${channelsHtml}
+          ${goalsHtml}
+          ${videoHtml}
+        </div>
+      `;
+
+      // เรียก updateUIText จาก main.js เพื่อจัดการ data-i18n
+      if (typeof updateUIText === 'function') updateUIText();
+    }
+
+    // Start
+    document.addEventListener('DOMContentLoaded', loadMatchDetail);
+  </script>
+</body>
+</html>

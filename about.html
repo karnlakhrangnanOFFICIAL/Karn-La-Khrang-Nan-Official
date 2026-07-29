@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Us - KARN LA KHRANg NAN Official | Unofficial Chelsea Fan Site">
+  <title>About Us · KARN LA KHRANg NAN Official</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/images/kanlakhrangnan-logo.png" type="image/svg+xml">
+  <style>
+    /* ============================================
+       ABOUT PAGE — CUSTOM STYLES
+       ============================================ */
+    .about-container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      padding: 3rem 2.5rem;
+    }
+
+    .about-container h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 6px solid var(--blue);
+      letter-spacing: -0.3px;
+    }
+
+    .about-container h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .about-container p {
+      color: #2d3748;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+
+    .about-container a {
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .about-container a:hover {
+      color: var(--blue-dark);
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: #fff8e1;
+      border-left: 6px solid var(--gold);
+      border-radius: 0 16px 16px 0;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      font-weight: 500;
+      color: #5c4700;
+    }
+
+    .highlight-box strong {
+      color: #3e2e00;
+    }
+
+    /* Disclaimer Box */
+    .disclaimer-box {
+      background: #fef2f2;
+      border-left: 6px solid #dc2626;
+      border-radius: 0 16px 16px 0;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      font-weight: 500;
+      color: #7f1d1d;
+    }
+
+    /* Contact Card */
+    .contact-card {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      color: white;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .contact-card .email-link {
+      display: inline-block;
+      background: white;
+      color: var(--blue-dark);
+      padding: 12px 30px;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
+      margin: 0.5rem 0;
+    }
+
+    .contact-card .email-link:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Sources List */
+    .sources-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sources-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #4a5568;
+    }
+
+    .sources-list li:last-child {
+      border-bottom: none;
+    }
+
+    .sources-list .source-icon {
+      font-size: 1.5rem;
+      width: 36px;
+      text-align: center;
+    }
+
+    /* Footer note */
+    .about-footer-note {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid #eef0f4;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        padding: 2rem 1.2rem;
+        border-radius: 16px;
+      }
+      .about-container h2 {
+        font-size: 1.4rem;
+      }
+      .contact-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/kanlakhrangnan-logo.png" alt="Chelsea Logo">
+        <span>KARNLAKHRANgNAN</span>
+      </a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="men-team.html" data-i18n="nav.men_team">ทีมชาย</a></li>
+        <li><a href="women-team.html" data-i18n="nav.women_team">ทีมหญิง</a></li>
+        <li><a href="trophy.html" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
+        <li><a href="icons.html" class="active" data-i18n="nav.icons">i-Cons</a></li>
+        <li><a href="the-story-blue.html" data-i18n="nav.story">The Story Blue</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle" data-i18n="nav.lang_toggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">ℹ️ ABOUT US</div>
+      <h1>About Us</h1>
+      <p class="season">KARN LA KHRANg NAN Official</p>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-container">
+
+    <div class="about-container">
+
+      <!-- SECTION 1: About -->
+      <h2>🏠 เกี่ยวกับเรา</h2>
+      <p>
+        <strong>KARN LA KHRANg NAN Official</strong> คือเว็บไซต์ที่สร้างขึ้นโดยแฟนบอล Chelsea 
+        ด้วยความรักและความหลงใหลในสโมสรฟุตบอล Chelsea Football Club 
+        เรารวบรวมข้อมูลที่เป็นประโยชน์สำหรับแฟนบอลเลือดน้ำเงินทุกคน 
+        ตั้งแต่โปรแกรมการแข่งขัน ผลการแข่งขัน ตารางคะแนน 
+        รายชื่อนักเตะ คลังถ้วยรางวัล ตำนานสโมสร 
+        และเรื่องราวประวัติศาสตร์ของสโมสร
+      </p>
+      <p>
+        เราไม่ใช่นักพัฒนาเว็บไซต์มืออาชีพ 
+        แต่เราคือแฟนบอลที่ต้องการสร้างพื้นที่สำหรับแฟนบอลด้วยกัน 
+        ทุกอย่างบนเว็บไซต์นี้เกิดจากความตั้งใจและเวลาที่ทุ่มเทให้กับสิ่งที่เรารัก
+      </p>
+
+      <div class="highlight-box">
+        <strong>💙 แรงบันดาลใจ:</strong> 
+        "เราเชื่อว่าทุกสโมสรควรมีพื้นที่ที่แฟนบอลสามารถเข้าถึงข้อมูลได้ง่าย 
+        สวยงาม และครบถ้วน โดยไม่ต้องพึ่งพาเว็บไซต์ทางการเพียงอย่างเดียว 
+        KARN LA KHRANg NAN คือของขวัญจากแฟนบอล สู่แฟนบอล"
+      </div>
+
+      <!-- SECTION 2: Disclaimer -->
+      <h2>⚠️ ข้อจำกัดความรับผิดชอบ (Disclaimer)</h2>
+
+      <div class="disclaimer-box">
+        <p><strong>KARN LA KHRANg NAN Official เป็นเว็บไซต์ที่ไม่เป็นทางการ (Unofficial Fan Site)</strong></p>
+        <p>เราไม่มีส่วนเกี่ยวข้องใด ๆ กับ Chelsea Football Club, 
+        Premier League, FA, UEFA, FIFA หรือองค์กรพันธมิตรใด ๆ ทั้งสิ้น</p>
+        <p>โลโก้, เครื่องหมายการค้า, และทรัพย์สินทางปัญญาทั้งหมดที่ปรากฏบนเว็บไซต์นี้ 
+        เป็นกรรมสิทธิ์ของเจ้าของที่เกี่ยวข้อง</p>
+      </div>
+
+      <p>
+        ข้อมูลบนเว็บไซต์นี้รวบรวมจากแหล่งข้อมูลสาธารณะ 
+        และอาจมีความคลาดเคลื่อนจากข้อมูลอย่างเป็นทางการ 
+        เราไม่รับประกันความถูกต้อง 100% ของข้อมูลทั้งหมด 
+        และขอแนะนำให้ตรวจสอบข้อมูลสำคัญกับเว็บไซต์ทางการของสโมสรก่อนการอ้างอิง
+      </p>
+
+      <!-- SECTION 3: Sources -->
+      <h2>📡 แหล่งข้อมูล</h2>
+      <ul class="sources-list">
+        <li>
+          <span class="source-icon">📊</span>
+          <span><strong>ข้อมูลนักเตะ:</strong> football-data.org API</span>
+        </li>
+        <li>
+          <span class="source-icon">📅</span>
+          <span><strong>โปรแกรมการแข่งขัน:</strong> Chelsea FC Official Website, Premier League Official</span>
+        </li>
+        <li>
+          <span class="source-icon">📚</span>
+          <span><strong>ข้อมูลประวัติศาสตร์:</strong> Wikipedia, Chelsea FC Official History, 11v11.com</span>
+        </li>
+        <li>
+          <span class="source-icon">🏆</span>
+          <span><strong>ข้อมูลถ้วยรางวัล:</strong> Chelsea FC Official, RSSSF (Rec.Sport.Soccer Statistics Foundation)</span>
+        </li>
+        <li>
+          <span class="source-icon">🖼️</span>
+          <span><strong>โลโก้ทีมและรายการ:</strong> football-logos.cc, Wikipedia Commons</span>
+        </li>
+        <li>
+          <span class="source-icon">🚩</span>
+          <span><strong>ภาพธงชาติ:</strong> FlagCDN (flagcdn.com)</span>
+        </li>
+      </ul>
+
+      <!-- SECTION 4: Contact -->
+      <h2>📬 ติดต่อเรา</h2>
+      <p>
+        มีคำถาม ข้อเสนอแนะ หรือต้องการแจ้งข้อมูลที่คลาดเคลื่อน? 
+        เรายินดีรับฟังทุกความคิดเห็น 
+        เพราะเราต้องการพัฒนาเว็บไซต์นี้ให้ดีที่สุดสำหรับแฟนบอลทุกคน
+      </p>
+
+      <div class="contact-card">
+        <h3>📧 อีเมลติดต่อ</h3>
+        <a href="mailto:karn.la.khrang.nan@gmail.com" class="email-link">
+          ✉️ karn.la.khrang.nan@gmail.com
+        </a>
+        <p style="margin-top:1rem; opacity:0.8; font-size:0.9rem;">
+          เราจะพยายามตอบกลับภายใน 48 ชั่วโมง
+        </p>
+      </div>
+
+      <p>
+        นอกจากอีเมลแล้ว คุณสามารถติดตามความเคลื่อนไหวของเว็บไซต์ 
+        และพูดคุยกับแฟนบอลคนอื่น ๆ ได้ผ่านช่องทางโซเชียลมีเดีย 
+        (จะประกาศให้ทราบเร็ว ๆ นี้)
+      </p>
+
+      <!-- FOOTER NOTE -->
+      <div class="about-footer-note">
+        <strong>KARN LA KHRANg NAN Official</strong><br>
+        Made with 💙 by Chelsea Fans, for Chelsea Fans.<br>
+        © 2026 — All external trademarks and copyrights belong to their respective owners.
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/kanlakhrangnan-logo.png" alt="Chelsea Logo" style="height:40px;">
+        <span>KARN LA KHRANg NAN</span>
+      </div>
+      <p>© 2026 <span>KARN LA KHRANg NAN Official</span>. All Rights Reserved.</p>
+      <p class="footer-disclaimer">This is an unofficial fan website. Not affiliated with Chelsea FC.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

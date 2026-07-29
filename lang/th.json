@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "หน้าแรก",
+    "men_team": "ทีมชาย",
+    "women_team": "ทีมหญิง",
+    "trophy": "ถ้วยรางวัล",
+    "icons": "i-Cons",
+    "story": "The Story Blue",
+    "about": "เกี่ยวกับเรา",
+    "lang_toggle": "EN"
+  },
+  "home": {
+    "title": "KARN LA KHRANg NAN Official",
+    "fixtures": "โปรแกรมแข่งขัน",
+    "results": "ผลการแข่งขัน",
+    "no_fixtures": "ไม่มีโปรแกรมแข่งขันในขณะนี้",
+    "no_results": "ยังไม่มีผลการแข่งขัน",
+    "quick_links": "ลิงก์ด่วน"
+  },
+  "common": {
+    "date": "วันที่",
+    "time": "เวลา",
+    "competition": "รายการ",
+    "home": "เจ้าบ้าน",
+    "away": "ทีมเยือน",
+    "venue": "สนาม",
+    "score": "สกอร์",
+    "view_all": "ดูทั้งหมด",
+    "loading": "กำลังโหลด..."
+  }
+}
