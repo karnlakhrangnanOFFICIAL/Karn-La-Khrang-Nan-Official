@@ -1,4 +1,32 @@
 /* ============================================
+   ฟอนต์ Anakotmai (Webfont)
+   ============================================ */
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('../fonts/anakotmai-bold.woff2') format('woff2'),
+       url('../fonts/anakotmai-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('../fonts/anakotmai-medium.woff2') format('woff2'),
+       url('../fonts/anakotmai-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('../fonts/anakotmai-light.woff2') format('woff2'),
+       url('../fonts/anakotmai-light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
    KANLAKHRANGNAN Official - Main Stylesheet
    ============================================ */
 
@@ -25,11 +53,12 @@
 }
 
 body {
-  font-family: 'Segoe UI', 'Noto Sans Thai', Tahoma, sans-serif;
+  font-family: 'Anakotmai', 'Segoe UI', 'Noto Sans Thai', sans-serif;
   background: var(--gray-100);
   color: var(--gray-800);
   line-height: 1.6;
   min-height: 100vh;
+  font-weight: 300; /* Light เป็นหลัก */
 }
 
 a {
@@ -1193,6 +1222,52 @@ img {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* ---------- MATCH META (ข้อมูลนัด) สีสัน ---------- */
+.match-meta {
+  text-align: center;
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  background: linear-gradient(145deg, rgba(3,70,148,0.06), rgba(3,70,148,0.02));
+  border-radius: 12px;
+  border: 1px solid rgba(3,70,148,0.1);
+}
+
+.match-meta__competition {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.match-meta__date {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--blue-dark);
+  margin-bottom: 2px;
+}
+
+.match-meta__time {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1.2;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.match-meta__venue {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gold);
+  background: rgba(212,175,55,0.12);
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 20px;
+  margin-top: 4px;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -1269,47 +1344,15 @@ img {
   }
 
   /* MOBILE FIXTURE CARD – 3 ชั้น */
-     .card-header,
-     .card-competition,
-     .card-date {
-       display: none;
-     }
-   
-     .fixture-card-mobile {
-       padding: 1rem;
-     }
-   
-     /* ชั้นที่ 1: ข้อมูลเมตา */
-   .match-meta {
-     text-align: center;
-     font-size: 0.85rem;
-     color: #4a5568;
-     margin-bottom: 1rem;
-     padding-bottom: 0.8rem;
-     border-bottom: 1px solid #e2e8f0;
-   }
-   .match-meta__competition {
-     font-weight: 700;
-     text-transform: uppercase;
-     letter-spacing: 0.5px;
-     color: var(--blue);
-     margin-bottom: 0.5rem;
-   }
-   .match-meta__date {
-     font-size: 0.9rem;
-     font-weight: 600;
-     color: #333;
-   }
-   .match-meta__time {
-     font-size: 1.2rem;
-     font-weight: 800;
-     color: var(--blue-dark);
-     margin: 0.2rem 0 0.5rem;
-   }
-   .match-meta__venue {
-     font-size: 0.8rem;
-     color: #777;
-   }
+  .card-header,
+  .card-competition,
+  .card-date {
+    display: none;
+  }
+
+  .fixture-card-mobile {
+    padding: 1rem;
+  }
 
   /* ชั้นที่ 2: ทีมเหย้า VS ทีมเยือน */
   .match-versus {
