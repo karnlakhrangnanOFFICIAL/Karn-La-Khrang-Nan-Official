@@ -66,10 +66,10 @@ function renderFixtures(container, fixtures, badgeClass) {
     <a href="match-detail.html?id=${match.id}" class="card-link">
       <div class="card fixture-card-mobile">
         <div class="match-meta">
-          <span>${formatDate(match.date, 'th')}</span>
-          <span>· ${displayTime}</span>
-          <span>· ${compName}</span>
-          <span>📍 ${match.venue}</span>
+          <div class="match-meta__competition">${compName}</div>
+          <div class="match-meta__date">${formatDate(match.date, 'th')}</div>
+          <div class="match-meta__time">${displayTime}</div>
+          <div class="match-meta__venue">🏟️ ${match.venue}</div>
         </div>
         <div class="match-versus">
           <div class="team-block">
