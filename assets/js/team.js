@@ -42,11 +42,6 @@ function formatCompetitionName(name) {
   return name.replace(/-/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
-// ---------- TEAM SYMBOL ----------
-function getTeamSymbol(teamName) {
-  return teamName.toLowerCase().includes('chelsea') ? '⏹️⏹️⏹️' : '🔲🔲🔲';
-}
-
 // ---------- RENDER FUNCTIONS ----------
 function renderFixtures(container, fixtures, badgeClass) {
   if (!container) return;
@@ -79,11 +74,11 @@ function renderFixtures(container, fixtures, badgeClass) {
         <div class="match-versus">
           <div class="team-block">
             <img src="${match.home_logo}" alt="${match.home_team}" onerror="this.src='assets/images/placeholder-team.svg'">
-            <span>${getTeamSymbol(match.home_team)}</span>
+            <span>${match.home_team}</span>
           </div>
           <div class="vs-text">VS</div>
           <div class="team-block">
-            <span>${getTeamSymbol(match.away_team)}</span>
+            <span>${match.away_team}</span>
             <img src="${match.away_logo}" alt="${match.away_team}" onerror="this.src='assets/images/placeholder-team.svg'">
           </div>
         </div>
@@ -253,7 +248,7 @@ async function loadMenPlayers() {
   }
 }
 
-// Women functions similar (loadWomenFixtures, etc.) use fallback JSON
+// Women functions similar
 async function loadWomenFixtures() {
   const container = document.getElementById('womenFixturesContainer');
   if (!container) return;
