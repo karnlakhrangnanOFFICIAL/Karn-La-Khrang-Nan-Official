@@ -1280,17 +1280,36 @@ img {
   }
 
   /* ชั้นที่ 1: ข้อมูลเมตา */
-  .match-meta {
-    text-align: center;
-    font-size: 0.85rem;
-    color: #4a5568;
-    margin-bottom: 1rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  .match-meta span {
-    margin: 0 2px;
-  }
+.match-meta {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #4a5568;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+.match-meta__competition {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+}
+.match-meta__date {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+.match-meta__time {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--blue-dark);
+  margin: 0.2rem 0 0.5rem;
+}
+.match-meta__venue {
+  font-size: 0.8rem;
+  color: #777;
+}
 
   /* ชั้นที่ 2: ทีมเหย้า VS ทีมเยือน */
   .match-versus {
