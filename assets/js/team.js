@@ -78,8 +78,8 @@ function renderFixtures(container, fixtures, badgeClass) {
           </div>
           <div class="vs-text">VS</div>
           <div class="team-block">
-            <span>${match.away_team}</span>
             <img src="${match.away_logo}" alt="${match.away_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+            <span>${match.away_team}</span>
           </div>
         </div>
         <div class="match-channels">
