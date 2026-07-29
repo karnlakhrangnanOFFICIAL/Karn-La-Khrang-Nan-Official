@@ -107,8 +107,8 @@
       "competition_logo": null,
       "home_team": "Chelsea",
       "home_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
-      "away_team": "databases/logo/teams/spain_real-sociedad.football-logos.cc.svg",
-      "away_logo": null,
+      "away_team": "Real Sociedadg",
+      "away_logo": "databases/logo/teams/spain_real-sociedad.football-logos.cc.svg",
       "venue": "Stamford Bridge",
       "channels": [
         { "platform": "chelseafc.com", "name": "CFC+", "logo": "databases/logo/tv/cfc.svg" }
