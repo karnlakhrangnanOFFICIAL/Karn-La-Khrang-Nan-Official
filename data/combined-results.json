@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "date": "2026-08-01",
+    "team": "men",
+    "competition": "pre-season",
+    "competition_logo": "",
+    "home_team": "KANLAKHRANGNAN",
+    "home_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "home_score": 3,
+    "away_team": "Johor Darul Ta'zim",
+    "away_logo": "databases/logo/teams/malaysia_johor-darul-tazim.football-logos.cc.svg",
+    "away_score": 1,
+    "venue": "KANLAKHRANGNAN Stadium"
+  },
+  {
+    "id": 2,
+    "date": "2026-08-02",
+    "team": "women",
+    "competition": "pre-season",
+    "competition_logo": "",
+    "home_team": "A-League Women All-Stars",
+    "home_logo": "databases/logo/teams/a-league-women-all-stars.png",
+    "home_score": 0,
+    "away_team": "KANLAKHRANGNAN",
+    "away_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "away_score": 5,
+    "venue": "Melbourne Rectangular Stadium"
+  },
+  {
+    "id": 3,
+    "date": "2026-08-03",
+    "team": "men",
+    "competition": "pre-season",
+    "competition_logo": "",
+    "home_team": "AC Milan",
+    "home_logo": "databases/logo/teams/italy_milan.football-logos.cc.svg",
+    "home_score": 2,
+    "away_team": "KANLAKHRANGNAN",
+    "away_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "away_score": 2,
+    "venue": "San Siro"
+  },
+  {
+    "id": 4,
+    "date": "2026-08-04",
+    "team": "women",
+    "competition": "pre-season",
+    "competition_logo": "",
+    "home_team": "KANLAKHRANGNAN",
+    "home_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "home_score": 7,
+    "away_team": "Auckland FC",
+    "away_logo": "databases/logo/teams/new-zealand_auckland-fc.football-logos.cc.svg",
+    "away_score": 0,
+    "venue": "KANLAKHRANGNAN Stadium"
+  },
+  {
+    "id": 5,
+    "date": "2026-08-05",
+    "team": "men",
+    "competition": "pre-season",
+    "competition_logo": "",
+    "home_team": "KANLAKHRANGNAN",
+    "home_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "home_score": 4,
+    "away_team": "Western Sydney Wanderers",
+    "away_logo": "databases/logo/teams/australia_western-sydney-wanderers.football-logos.cc.svg",
+    "away_score": 1,
+    "venue": "KANLAKHRANGNAN Stadium"
+  }
+]

@@ -1,0 +1,513 @@
+📦Karn-La-Khrang-Nan-Official-main
+ ┣ 📂.continue
+ ┃ ┗ 📂prompts
+ ┃ ┃ ┗ 📜new-prompt.md
+ ┣ 📂.vscode
+ ┃ ┗ 📜settings.json
+ ┣ 📂assets
+ ┃ ┣ 📂css
+ ┃ ┃ ┗ 📜style.css
+ ┃ ┣ 📂images
+ ┃ ┃ ┣ 📂flags
+ ┃ ┃ ┃ ┣ 📜abw.svg
+ ┃ ┃ ┃ ┣ 📜ae.svg
+ ┃ ┃ ┃ ┣ 📜afg.svg
+ ┃ ┃ ┃ ┣ 📜ago.svg
+ ┃ ┃ ┃ ┣ 📜aia.svg
+ ┃ ┃ ┃ ┣ 📜ala.svg
+ ┃ ┃ ┃ ┣ 📜alb.svg
+ ┃ ┃ ┃ ┣ 📜and.svg
+ ┃ ┃ ┃ ┣ 📜arg.svg
+ ┃ ┃ ┃ ┣ 📜arm.svg
+ ┃ ┃ ┃ ┣ 📜asm.svg
+ ┃ ┃ ┃ ┣ 📜ata.svg
+ ┃ ┃ ┃ ┣ 📜atf.svg
+ ┃ ┃ ┃ ┣ 📜atg.svg
+ ┃ ┃ ┃ ┣ 📜aus.svg
+ ┃ ┃ ┃ ┣ 📜aut.svg
+ ┃ ┃ ┃ ┣ 📜aze.svg
+ ┃ ┃ ┃ ┣ 📜bdi.svg
+ ┃ ┃ ┃ ┣ 📜bel.svg
+ ┃ ┃ ┃ ┣ 📜ben.svg
+ ┃ ┃ ┃ ┣ 📜bes.svg
+ ┃ ┃ ┃ ┣ 📜bfa.svg
+ ┃ ┃ ┃ ┣ 📜bgd.svg
+ ┃ ┃ ┃ ┣ 📜bgr.svg
+ ┃ ┃ ┃ ┣ 📜bhr.svg
+ ┃ ┃ ┃ ┣ 📜bhs.svg
+ ┃ ┃ ┃ ┣ 📜bih.svg
+ ┃ ┃ ┃ ┣ 📜blm.svg
+ ┃ ┃ ┃ ┣ 📜blr.svg
+ ┃ ┃ ┃ ┣ 📜blz.svg
+ ┃ ┃ ┃ ┣ 📜bmu.svg
+ ┃ ┃ ┃ ┣ 📜bol.svg
+ ┃ ┃ ┃ ┣ 📜bra.svg
+ ┃ ┃ ┃ ┣ 📜brb.svg
+ ┃ ┃ ┃ ┣ 📜brn.svg
+ ┃ ┃ ┃ ┣ 📜btn.svg
+ ┃ ┃ ┃ ┣ 📜bvt.svg
+ ┃ ┃ ┃ ┣ 📜bwa.svg
+ ┃ ┃ ┃ ┣ 📜caf.svg
+ ┃ ┃ ┃ ┣ 📜can.svg
+ ┃ ┃ ┃ ┣ 📜cck.svg
+ ┃ ┃ ┃ ┣ 📜ch.svg
+ ┃ ┃ ┃ ┣ 📜chl.svg
+ ┃ ┃ ┃ ┣ 📜chn.svg
+ ┃ ┃ ┃ ┣ 📜civ.svg
+ ┃ ┃ ┃ ┣ 📜cmr.svg
+ ┃ ┃ ┃ ┣ 📜cod.svg
+ ┃ ┃ ┃ ┣ 📜cog.svg
+ ┃ ┃ ┃ ┣ 📜cok.svg
+ ┃ ┃ ┃ ┣ 📜col.svg
+ ┃ ┃ ┃ ┣ 📜com.svg
+ ┃ ┃ ┃ ┣ 📜cpv.svg
+ ┃ ┃ ┃ ┣ 📜cri.svg
+ ┃ ┃ ┃ ┣ 📜cub.svg
+ ┃ ┃ ┃ ┣ 📜cuw.svg
+ ┃ ┃ ┃ ┣ 📜cxr.svg
+ ┃ ┃ ┃ ┣ 📜cym.svg
+ ┃ ┃ ┃ ┣ 📜cyp.svg
+ ┃ ┃ ┃ ┣ 📜cze.svg
+ ┃ ┃ ┃ ┣ 📜dji.svg
+ ┃ ┃ ┃ ┣ 📜dma.svg
+ ┃ ┃ ┃ ┣ 📜dnk.svg
+ ┃ ┃ ┃ ┣ 📜dom.svg
+ ┃ ┃ ┃ ┣ 📜dza.svg
+ ┃ ┃ ┃ ┣ 📜ecu.svg
+ ┃ ┃ ┃ ┣ 📜egy.svg
+ ┃ ┃ ┃ ┣ 📜eh.svg
+ ┃ ┃ ┃ ┣ 📜eng.svg
+ ┃ ┃ ┃ ┣ 📜eri.svg
+ ┃ ┃ ┃ ┣ 📜esp.svg
+ ┃ ┃ ┃ ┣ 📜est.svg
+ ┃ ┃ ┃ ┣ 📜eth.svg
+ ┃ ┃ ┃ ┣ 📜fin.svg
+ ┃ ┃ ┃ ┣ 📜fji.svg
+ ┃ ┃ ┃ ┣ 📜flk.svg
+ ┃ ┃ ┃ ┣ 📜fra.svg
+ ┃ ┃ ┃ ┣ 📜fro.svg
+ ┃ ┃ ┃ ┣ 📜fsm.svg
+ ┃ ┃ ┃ ┣ 📜gab.svg
+ ┃ ┃ ┃ ┣ 📜gb-nir.svg
+ ┃ ┃ ┃ ┣ 📜gb.svg
+ ┃ ┃ ┃ ┣ 📜geo.svg
+ ┃ ┃ ┃ ┣ 📜ger.svg
+ ┃ ┃ ┃ ┣ 📜ggy.svg
+ ┃ ┃ ┃ ┣ 📜gha.svg
+ ┃ ┃ ┃ ┣ 📜gib.svg
+ ┃ ┃ ┃ ┣ 📜gin.svg
+ ┃ ┃ ┃ ┣ 📜glp.svg
+ ┃ ┃ ┃ ┣ 📜gmb.svg
+ ┃ ┃ ┃ ┣ 📜gnb.svg
+ ┃ ┃ ┃ ┣ 📜gnq.svg
+ ┃ ┃ ┃ ┣ 📜grc.svg
+ ┃ ┃ ┃ ┣ 📜grd.svg
+ ┃ ┃ ┃ ┣ 📜grl.svg
+ ┃ ┃ ┃ ┣ 📜gtm.svg
+ ┃ ┃ ┃ ┣ 📜guf.svg
+ ┃ ┃ ┃ ┣ 📜gum.svg
+ ┃ ┃ ┃ ┣ 📜guy.svg
+ ┃ ┃ ┃ ┣ 📜hkg.svg
+ ┃ ┃ ┃ ┣ 📜hmd.svg
+ ┃ ┃ ┃ ┣ 📜hnd.svg
+ ┃ ┃ ┃ ┣ 📜hrv.svg
+ ┃ ┃ ┃ ┣ 📜hti.svg
+ ┃ ┃ ┃ ┣ 📜hun.svg
+ ┃ ┃ ┃ ┣ 📜idn.svg
+ ┃ ┃ ┃ ┣ 📜imn.svg
+ ┃ ┃ ┃ ┣ 📜ind.svg
+ ┃ ┃ ┃ ┣ 📜iot.svg
+ ┃ ┃ ┃ ┣ 📜irl.svg
+ ┃ ┃ ┃ ┣ 📜irn.svg
+ ┃ ┃ ┃ ┣ 📜irq.svg
+ ┃ ┃ ┃ ┣ 📜isl.svg
+ ┃ ┃ ┃ ┣ 📜isr.svg
+ ┃ ┃ ┃ ┣ 📜ita.svg
+ ┃ ┃ ┃ ┣ 📜jam.svg
+ ┃ ┃ ┃ ┣ 📜jey.svg
+ ┃ ┃ ┃ ┣ 📜jor.svg
+ ┃ ┃ ┃ ┣ 📜jpn.svg
+ ┃ ┃ ┃ ┣ 📜kaz.svg
+ ┃ ┃ ┃ ┣ 📜ken.svg
+ ┃ ┃ ┃ ┣ 📜kgz.svg
+ ┃ ┃ ┃ ┣ 📜khm.svg
+ ┃ ┃ ┃ ┣ 📜kir.svg
+ ┃ ┃ ┃ ┣ 📜kna.svg
+ ┃ ┃ ┃ ┣ 📜kor.svg
+ ┃ ┃ ┃ ┣ 📜kwt.svg
+ ┃ ┃ ┃ ┣ 📜lao.svg
+ ┃ ┃ ┃ ┣ 📜lbn.svg
+ ┃ ┃ ┃ ┣ 📜lbr.svg
+ ┃ ┃ ┃ ┣ 📜lby.svg
+ ┃ ┃ ┃ ┣ 📜lca.svg
+ ┃ ┃ ┃ ┣ 📜lie.svg
+ ┃ ┃ ┃ ┣ 📜lka.svg
+ ┃ ┃ ┃ ┣ 📜lso.svg
+ ┃ ┃ ┃ ┣ 📜ltu.svg
+ ┃ ┃ ┃ ┣ 📜lux.svg
+ ┃ ┃ ┃ ┣ 📜lva.svg
+ ┃ ┃ ┃ ┣ 📜mac.svg
+ ┃ ┃ ┃ ┣ 📜maf.svg
+ ┃ ┃ ┃ ┣ 📜mar.svg
+ ┃ ┃ ┃ ┣ 📜mco.svg
+ ┃ ┃ ┃ ┣ 📜mda.svg
+ ┃ ┃ ┃ ┣ 📜mdg.svg
+ ┃ ┃ ┃ ┣ 📜mdv.svg
+ ┃ ┃ ┃ ┣ 📜mex.svg
+ ┃ ┃ ┃ ┣ 📜mhl.svg
+ ┃ ┃ ┃ ┣ 📜mkd.svg
+ ┃ ┃ ┃ ┣ 📜mli.svg
+ ┃ ┃ ┃ ┣ 📜mlt.svg
+ ┃ ┃ ┃ ┣ 📜mmr.svg
+ ┃ ┃ ┃ ┣ 📜mne.svg
+ ┃ ┃ ┃ ┣ 📜mng.svg
+ ┃ ┃ ┃ ┣ 📜mnp.svg
+ ┃ ┃ ┃ ┣ 📜moz.svg
+ ┃ ┃ ┃ ┣ 📜mrt.svg
+ ┃ ┃ ┃ ┣ 📜msr.svg
+ ┃ ┃ ┃ ┣ 📜mtq.svg
+ ┃ ┃ ┃ ┣ 📜mus.svg
+ ┃ ┃ ┃ ┣ 📜mwi.svg
+ ┃ ┃ ┃ ┣ 📜mys.svg
+ ┃ ┃ ┃ ┣ 📜myt.svg
+ ┃ ┃ ┃ ┣ 📜nam.svg
+ ┃ ┃ ┃ ┣ 📜ncl.svg
+ ┃ ┃ ┃ ┣ 📜ned.svg
+ ┃ ┃ ┃ ┣ 📜ner.svg
+ ┃ ┃ ┃ ┣ 📜nfk.svg
+ ┃ ┃ ┃ ┣ 📜nga.svg
+ ┃ ┃ ┃ ┣ 📜nic.svg
+ ┃ ┃ ┃ ┣ 📜niu.svg
+ ┃ ┃ ┃ ┣ 📜nor.svg
+ ┃ ┃ ┃ ┣ 📜npl.svg
+ ┃ ┃ ┃ ┣ 📜nru.svg
+ ┃ ┃ ┃ ┣ 📜nzl.svg
+ ┃ ┃ ┃ ┣ 📜omn.svg
+ ┃ ┃ ┃ ┣ 📜pak.svg
+ ┃ ┃ ┃ ┣ 📜pan.svg
+ ┃ ┃ ┃ ┣ 📜pcn.svg
+ ┃ ┃ ┃ ┣ 📜per.svg
+ ┃ ┃ ┃ ┣ 📜phl.svg
+ ┃ ┃ ┃ ┣ 📜plw.svg
+ ┃ ┃ ┃ ┣ 📜png.svg
+ ┃ ┃ ┃ ┣ 📜pol.svg
+ ┃ ┃ ┃ ┣ 📜por.svg
+ ┃ ┃ ┃ ┣ 📜pri.svg
+ ┃ ┃ ┃ ┣ 📜prk.svg
+ ┃ ┃ ┃ ┣ 📜pry.svg
+ ┃ ┃ ┃ ┣ 📜pse.svg
+ ┃ ┃ ┃ ┣ 📜pyf.svg
+ ┃ ┃ ┃ ┣ 📜qat.svg
+ ┃ ┃ ┃ ┣ 📜rename_flags.bat
+ ┃ ┃ ┃ ┣ 📜reu.svg
+ ┃ ┃ ┃ ┣ 📜rou.svg
+ ┃ ┃ ┃ ┣ 📜rus.svg
+ ┃ ┃ ┃ ┣ 📜rwa.svg
+ ┃ ┃ ┃ ┣ 📜sau.svg
+ ┃ ┃ ┃ ┣ 📜sco.svg
+ ┃ ┃ ┃ ┣ 📜sdn.svg
+ ┃ ┃ ┃ ┣ 📜se.svg
+ ┃ ┃ ┃ ┣ 📜sen.svg
+ ┃ ┃ ┃ ┣ 📜sgp.svg
+ ┃ ┃ ┃ ┣ 📜sgs.svg
+ ┃ ┃ ┃ ┣ 📜shn.svg
+ ┃ ┃ ┃ ┣ 📜sjm.svg
+ ┃ ┃ ┃ ┣ 📜slb.svg
+ ┃ ┃ ┃ ┣ 📜sle.svg
+ ┃ ┃ ┃ ┣ 📜slv.svg
+ ┃ ┃ ┃ ┣ 📜smr.svg
+ ┃ ┃ ┃ ┣ 📜som.svg
+ ┃ ┃ ┃ ┣ 📜spm.svg
+ ┃ ┃ ┃ ┣ 📜srb.svg
+ ┃ ┃ ┃ ┣ 📜ssd.svg
+ ┃ ┃ ┃ ┣ 📜stp.svg
+ ┃ ┃ ┃ ┣ 📜sur.svg
+ ┃ ┃ ┃ ┣ 📜svk.svg
+ ┃ ┃ ┃ ┣ 📜svn.svg
+ ┃ ┃ ┃ ┣ 📜swz.svg
+ ┃ ┃ ┃ ┣ 📜sxm.svg
+ ┃ ┃ ┃ ┣ 📜sy.svg
+ ┃ ┃ ┃ ┣ 📜syc.svg
+ ┃ ┃ ┃ ┣ 📜tc.svg
+ ┃ ┃ ┃ ┣ 📜tcd.svg
+ ┃ ┃ ┃ ┣ 📜tg.svg
+ ┃ ┃ ┃ ┣ 📜th.svg
+ ┃ ┃ ┃ ┣ 📜tj.svg
+ ┃ ┃ ┃ ┣ 📜tk.svg
+ ┃ ┃ ┃ ┣ 📜tl.svg
+ ┃ ┃ ┃ ┣ 📜tm.svg
+ ┃ ┃ ┃ ┣ 📜tn.svg
+ ┃ ┃ ┃ ┣ 📜to.svg
+ ┃ ┃ ┃ ┣ 📜tr.svg
+ ┃ ┃ ┃ ┣ 📜tt.svg
+ ┃ ┃ ┃ ┣ 📜tv.svg
+ ┃ ┃ ┃ ┣ 📜tw.svg
+ ┃ ┃ ┃ ┣ 📜tz.svg
+ ┃ ┃ ┃ ┣ 📜ua.svg
+ ┃ ┃ ┃ ┣ 📜ug.svg
+ ┃ ┃ ┃ ┣ 📜um.svg
+ ┃ ┃ ┃ ┣ 📜us.svg
+ ┃ ┃ ┃ ┣ 📜uy.svg
+ ┃ ┃ ┃ ┣ 📜uz.svg
+ ┃ ┃ ┃ ┣ 📜vat.svg
+ ┃ ┃ ┃ ┣ 📜vct.svg
+ ┃ ┃ ┃ ┣ 📜ve.svg
+ ┃ ┃ ┃ ┣ 📜vg.svg
+ ┃ ┃ ┃ ┣ 📜vi.svg
+ ┃ ┃ ┃ ┣ 📜vn.svg
+ ┃ ┃ ┃ ┣ 📜vu.svg
+ ┃ ┃ ┃ ┣ 📜wf.svg
+ ┃ ┃ ┃ ┣ 📜wls.svg
+ ┃ ┃ ┃ ┣ 📜wsm.svg
+ ┃ ┃ ┃ ┣ 📜xk.svg
+ ┃ ┃ ┃ ┣ 📜ye.svg
+ ┃ ┃ ┃ ┣ 📜zaf.svg
+ ┃ ┃ ┃ ┣ 📜zm.svg
+ ┃ ┃ ┃ ┗ 📜zw.svg
+ ┃ ┃ ┣ 📂icons
+ ┃ ┃ ┃ ┗ 📜john-terry.png
+ ┃ ┃ ┣ 📂players
+ ┃ ┃ ┃ ┣ 📂john-terry
+ ┃ ┃ ┃ ┃ ┣ 📜profile.png
+ ┃ ┃ ┃ ┃ ┗ 📜README.md
+ ┃ ┃ ┃ ┣ 📜cole-palmer.jpg
+ ┃ ┃ ┃ ┣ 📜enzo-fernandez.jpg
+ ┃ ┃ ┃ ┣ 📜Estêvão.jpg
+ ┃ ┃ ┃ ┣ 📜James.jpg
+ ┃ ┃ ┃ ┣ 📜joao-pedro.jpg
+ ┃ ┃ ┃ ┗ 📜moises-caicedo.jpg
+ ┃ ┃ ┣ 📂promote
+ ┃ ┃ ┃ ┗ 📜fixtures-premier-peague-2026-27.jpg
+ ┃ ┃ ┣ 📂story
+ ┃ ┃ ┃ ┣ 📜chapter-X.jpg
+ ┃ ┃ ┃ ┗ 📜placeholder-trophy.svg
+ ┃ ┃ ┣ 📜karnlakhrangnan-logo.png
+ ┃ ┃ ┣ 📜kanlakhrangnan-logo.svg
+ ┃ ┃ ┣ 📜kanlakhrangnan-logo1.svg
+ ┃ ┃ ┗ 📜placeholder-team.svg
+ ┃ ┗ 📂js
+ ┃ ┃ ┣ 📜main.js
+ ┃ ┃ ┗ 📜team.js
+ ┣ 📂data
+ ┃ ┣ 📜combined-fixtures.json
+ ┃ ┣ 📜combined-results.json
+ ┃ ┣ 📜fixtures-men.json
+ ┃ ┣ 📜icons.json
+ ┃ ┣ 📜players-men.json
+ ┃ ┣ 📜players-women.json
+ ┃ ┣ 📜results-men.json
+ ┃ ┣ 📜story-blue.json
+ ┃ ┣ 📜tables-men.json
+ ┃ ┣ 📜tables-women.json
+ ┃ ┗ 📜trophy.json
+ ┣ 📂databases
+ ┃ ┣ 📂admin
+ ┃ ┃ ┣ 📜fixtures-men.xlsx
+ ┃ ┃ ┣ 📜fixtures-women.xlsx
+ ┃ ┃ ┣ 📜icons.xlsx
+ ┃ ┃ ┣ 📜players-men.xlsx
+ ┃ ┃ ┣ 📜players-women.xlsx
+ ┃ ┃ ┣ 📜results-men.xlsx
+ ┃ ┃ ┣ 📜results-women.xlsx
+ ┃ ┃ ┣ 📜story-blue.xlsx
+ ┃ ┃ ┣ 📜tables-men.xlsx
+ ┃ ┃ ┣ 📜tables-women.xlsx
+ ┃ ┃ ┗ 📜trophy.xlsx
+ ┃ ┣ 📂data
+ ┃ ┃ ┣ 📜combined-fixtures.json
+ ┃ ┃ ┣ 📜combined-results.json
+ ┃ ┃ ┣ 📜fixtures-men.json
+ ┃ ┃ ┣ 📜fixtures-women.json
+ ┃ ┃ ┣ 📜icons.json
+ ┃ ┃ ┣ 📜players-men.json
+ ┃ ┃ ┣ 📜players-women.json
+ ┃ ┃ ┣ 📜results-men.json
+ ┃ ┃ ┣ 📜results-women.json
+ ┃ ┃ ┣ 📜story-blue.json
+ ┃ ┃ ┣ 📜tables-men.json
+ ┃ ┃ ┣ 📜tables-women.json
+ ┃ ┃ ┗ 📜trophy.json
+ ┃ ┣ 📂lang
+ ┃ ┃ ┣ 📜en.json
+ ┃ ┃ ┗ 📜th.json
+ ┃ ┗ 📂logo
+ ┃ ┃ ┣ 📂competitions
+ ┃ ┃ ┃ ┣ 📂men
+ ┃ ┃ ┃ ┃ ┣ 📜england_efl-cup.football-logos.cc.svg
+ ┃ ┃ ┃ ┃ ┣ 📜england_emirates-fa-cup.football-logos.cc.svg
+ ┃ ┃ ┃ ┃ ┣ 📜england_english-premier-league.football-logos.cc.svg
+ ┃ ┃ ┃ ┃ ┣ 📜england_fa-community-shield.football-logos.cc.svg
+ ┃ ┃ ┃ ┃ ┣ 📜tournaments_uefa-champions-league.football-logos.cc.svg
+ ┃ ┃ ┃ ┃ ┣ 📜tournaments_uefa-conference-league.football-logos.cc.svg
+ ┃ ┃ ┃ ┃ ┗ 📜tournaments_uefa-europa-league.football-logos.cc.svg
+ ┃ ┃ ┃ ┗ 📂women
+ ┃ ┃ ┃ ┃ ┣ 📜women_community-shield-logo.png
+ ┃ ┃ ┃ ┃ ┣ 📜women_fa_cup.png
+ ┃ ┃ ┃ ┃ ┣ 📜women_league_cup.png
+ ┃ ┃ ┃ ┃ ┣ 📜women_super_league.png
+ ┃ ┃ ┃ ┃ ┗ 📜women_uwcl_champions_league_logo.svg
+ ┃ ┃ ┣ 📂teams
+ ┃ ┃ ┃ ┣ 📜a-league-women-all-stars.png
+ ┃ ┃ ┃ ┣ 📜australia_western-sydney-wanderers.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_arsenal.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_aston-villa.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_birmingham.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_bournemouth.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_brentford.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_brighton.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_charlton.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_chelsea.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_coventry-city.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_crystal-palace.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_everton.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_fulham.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_hull-city.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_ipswich.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_leeds-united.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_liverpool.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_manchester-city.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_manchester-united.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_newcastle.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_nottingham-forest.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_sunderland.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_tottenham--2006-2013.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜england_west-ham.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜italy_juventus--white.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜italy_milan.football-logos.cc.svg
+ ┃ ┃ ┃ ┣ 📜London_City_Lionesses.svg
+ ┃ ┃ ┃ ┣ 📜malaysia_johor-darul-tazim.football-logos.cc.svg
+ ┃ ┃ ┃ ┗ 📜new-zealand_auckland-fc.football-logos.cc.svg
+ ┃ ┃ ┗ 📂tv
+ ┃ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┃ ┣ 📜bg.svg
+ ┃ ┃ ┃ ┣ 📜cfc.svg
+ ┃ ┃ ┃ ┣ 📜monomax.png
+ ┃ ┃ ┃ ┗ 📜monomax.svg
+ ┣ 📂icon
+ ┃ ┣ 📜alan-hudson-eng.html
+ ┃ ┣ 📜ashley-cole-eng.html
+ ┃ ┣ 📜bobby-tambling-eng.html
+ ┃ ┣ 📜branislav-ivanovic-srb.html
+ ┃ ┣ 📜carlo-cudicini-ita.html
+ ┃ ┣ 📜cesar-azpilicueta-esp.html
+ ┃ ┣ 📜charlie-cooke-sco.html
+ ┃ ┣ 📜claude-makelele-fra.html
+ ┃ ┣ 📜dennis-wise-eng.html
+ ┃ ┣ 📜didier-drogba-civ.html
+ ┃ ┣ 📜eden-hazard-bel.html
+ ┃ ┣ 📜eidur-gudjohnsen-isl.html
+ ┃ ┣ 📜frank-lampard-eng.html
+ ┃ ┣ 📜gary-cahill-eng.html
+ ┃ ┣ 📜gianfranco-zola-ita.html
+ ┃ ┣ 📜gianluca-vialli-ita.html
+ ┃ ┣ 📜jimmy-floyd-hasselbaink-ned.html
+ ┃ ┣ 📜jimmy-greaves-eng.html
+ ┃ ┣ 📜john-hollins-eng.html
+ ┃ ┣ 📜john-obi-mikel-nga.html
+ ┃ ┣ 📜john-terry-eng.html
+ ┃ ┣ 📜john-terry.html
+ ┃ ┣ 📜kerry-dixon-eng.html
+ ┃ ┣ 📜marcel-desailly-fra.html
+ ┃ ┣ 📜mark-hughes-wal.html
+ ┃ ┣ 📜michael-ballack-ger.html
+ ┃ ┣ 📜michael-essien-gha.html
+ ┃ ┣ 📜ngolo-kante-fra.html
+ ┃ ┣ 📜pat-nevin-sco.html
+ ┃ ┣ 📜peter-bonetti-eng.html
+ ┃ ┣ 📜peter-osgood-eng.html
+ ┃ ┣ 📜petr-cech-cze.html
+ ┃ ┣ 📜ramires-bra.html
+ ┃ ┣ 📜ray-wilkins-eng.html
+ ┃ ┣ 📜ricardo-carvalho-por.html
+ ┃ ┣ 📜roberto-di-matteo-ita.html
+ ┃ ┣ 📜ron-harris-eng.html
+ ┃ ┣ 📜roy-bentley-eng.html
+ ┃ ┣ 📜ruud-gullit-ned.html
+ ┃ ┣ 📜steve-clarke-sco.html
+ ┃ ┣ 📜tore-andre-flo-nor.html
+ ┃ ┣ 📜willian-bra.html
+ ┃ ┗ 📜_TEMPLATE.html
+ ┣ 📂lang
+ ┃ ┣ 📜en.json
+ ┃ ┗ 📜th.json
+ ┣ 📂the-story-blue
+ ┃ ┣ 📜chapter-1.html
+ ┃ ┣ 📜chapter-2.html
+ ┃ ┣ 📜chapter-3.html
+ ┃ ┣ 📜chapter-4.html
+ ┃ ┣ 📜chapter-5.html
+ ┃ ┣ 📜chapter-6.html
+ ┃ ┣ 📜chapter-7.html
+ ┃ ┣ 📜chapter-8.html
+ ┃ ┗ 📜chapter-9.html
+ ┣ 📂trophy
+ ┃ ┣ 📜trophy-id01-m-1.html
+ ┃ ┣ 📜trophy-id02-m-2.html
+ ┃ ┣ 📜trophy-id03-m-3.html
+ ┃ ┣ 📜trophy-id04-m-4.html
+ ┃ ┣ 📜trophy-id05-m-5.html
+ ┃ ┣ 📜trophy-id06-m-6.html
+ ┃ ┣ 📜trophy-id07-m-7.html
+ ┃ ┣ 📜trophy-id08-m-8.html
+ ┃ ┣ 📜trophy-id09-m-9.html
+ ┃ ┣ 📜trophy-id10-m-10.html
+ ┃ ┣ 📜trophy-id11-m-11.html
+ ┃ ┣ 📜trophy-id12-m-12.html
+ ┃ ┣ 📜trophy-id13-m-13.html
+ ┃ ┣ 📜trophy-id14-w-1.html
+ ┃ ┣ 📜trophy-id15-w-2.html
+ ┃ ┣ 📜trophy-id16-w-3.html
+ ┃ ┣ 📜trophy-id17-m-14.html
+ ┃ ┣ 📜trophy-id18-m-15.html
+ ┃ ┣ 📜trophy-id19-m-16.html
+ ┃ ┣ 📜trophy-id20-m-17.html
+ ┃ ┣ 📜trophy-id21-m-18.html
+ ┃ ┣ 📜trophy-id22-m-19.html
+ ┃ ┣ 📜trophy-id23-m-20.html
+ ┃ ┣ 📜trophy-id24-m-21.html
+ ┃ ┣ 📜trophy-id25-m-22.html
+ ┃ ┣ 📜trophy-id26-m-23.html
+ ┃ ┣ 📜trophy-id27-m-24.html
+ ┃ ┣ 📜trophy-id28-m-25.html
+ ┃ ┣ 📜trophy-id29-m-26.html
+ ┃ ┣ 📜trophy-id30-m-27.html
+ ┃ ┣ 📜trophy-id31-m-28.html
+ ┃ ┣ 📜trophy-id32-w-4.html
+ ┃ ┣ 📜trophy-id33-w-5.html
+ ┃ ┣ 📜trophy-id34-m-29.html
+ ┃ ┣ 📜trophy-id35-m-30.html
+ ┃ ┣ 📜trophy-id36-w-6.html
+ ┃ ┣ 📜trophy-id37-m-31.html
+ ┃ ┣ 📜trophy-id38-w-7.html
+ ┃ ┣ 📜trophy-id39-w-8.html
+ ┃ ┣ 📜trophy-id40-m-32.html
+ ┃ ┣ 📜trophy-id41-m-33.html
+ ┃ ┣ 📜trophy-id42-w-9.html
+ ┃ ┣ 📜trophy-id43-w-10.html
+ ┃ ┣ 📜trophy-id44-w-11.html
+ ┃ ┣ 📜trophy-id45-m-34.html
+ ┃ ┣ 📜trophy-id46-m-35.html
+ ┃ ┣ 📜trophy-id47-w-12.html
+ ┃ ┣ 📜trophy-id48-w-13.html
+ ┃ ┣ 📜trophy-id49-m-36.html
+ ┃ ┣ 📜trophy-id50-w-14.html
+ ┃ ┣ 📜trophy-id51-w-15.html
+ ┃ ┣ 📜trophy-id52-w-16.html
+ ┃ ┣ 📜trophy-id53-w-17.html
+ ┃ ┣ 📜trophy-id54-w-18.html
+ ┃ ┣ 📜trophy-id55-w-19.html
+ ┃ ┣ 📜trophy-id56-m-37.html
+ ┃ ┣ 📜trophy-id57-m-38.html
+ ┃ ┗ 📜trophy-id58-w-20.html
+ ┣ 📜about.html
+ ┣ 📜icons.html
+ ┣ 📜index.html
+ ┣ 📜match-detail.html
+ ┣ 📜men-team.html
+ ┣ 📜player-profile.html
+ ┣ 📜the-story-blue.html
+ ┣ 📜trophy.html
+ ┣ 📜women-team.html
+ ┗ 📜📦KARNLAKHRANGNAN-Official.txt
+
+ update:06/08/2026

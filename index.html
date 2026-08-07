@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KARN LA KHRANg NAN Official Website · Chelsea FC 2026/27 Season">
+  <title>KARN LA KHRANg NAN Official</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/images/karnlakhrangnan-logo.png" type="image/png">
+</head>
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/karnlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo">
+        <span>KARN LA KHRANg NAN</span>
+      </a>
+
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="men-team.html" data-i18n="nav.men_team">ทีมชาย</a></li>
+        <li><a href="women-team.html" data-i18n="nav.women_team">ทีมหญิง</a></li>
+        <li><a href="trophy.html" data-i18n="nav.trophy">ถ้วยรางวัล</a></li>
+        <li><a href="icons.html" data-i18n="nav.icons">i-Cons</a></li>
+        <li><a href="the-story-blue.html" data-i18n="nav.story">The Story Blue</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+        <li><a href="#" class="lang-toggle" id="langToggle" data-i18n="nav.lang_toggle">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 data-i18n="home.title">กาลครั้งนั้น Official</h1>
+      <p class="season" data-i18n="home.season_sub">By Chelsea Fans, For Chelsea Fans · SEASON 2026 / 27</p>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-container">
+
+    <!-- RESULTS SECTION -->
+    <section class="section" id="results">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="icon">📊</span>
+          <span data-i18n="home.results">ผลการแข่งขัน</span>
+          <span class="count-badge" id="resultsCount">0</span>
+        </h2>
+        <a href="men-team.html#results" class="view-all" data-i18n="common.view_all">ดูทั้งหมด</a>
+      </div>
+      <div class="cards-grid" id="resultsContainer">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p data-i18n="common.loading">กำลังโหลด...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIXTURES SECTION -->
+    <section class="section" id="fixtures">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="icon">📅</span>
+          <span data-i18n="home.fixtures">โปรแกรมแข่งขัน</span>
+          <span class="count-badge" id="fixturesCount">0</span>
+        </h2>
+        <a href="men-team.html" class="view-all" data-i18n="common.view_all">ดูทั้งหมด</a>
+      </div>
+      <div class="cards-grid" id="fixturesContainer">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p data-i18n="common.loading">กำลังโหลด...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/karnlakhrangnan-logo.png" alt="KARN LA KHRANg NAN Logo" style="height:40px;">
+        <span>KARN LA KHRANg NAN</span>
+      </div>
+      <p>© 2026 <span>KARN LA KHRANg NAN Official</span>. All Rights Reserved.</p>
+      <p class="footer-disclaimer">This is an unofficial fan website. Not affiliated with Chelsea FC.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    // ============================================
+    // INDEX PAGE — FIXTURES & RESULTS
+    // ============================================
+
+    // ---------- FORMAT DATE (local) ----------
+    function formatDate(dateString, lang) {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return dateString;
+      if (lang === 'th') {
+        const thaiMonths = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+        const thaiYear = date.getFullYear() + 543;
+        return `${date.getDate()} ${thaiMonths[date.getMonth()]} ${thaiYear}`;
+      }
+      return date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function formatCompetitionName(name) {
+      if (!name) return '';
+      return name.replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    // ---------- LOAD ALL DATA ----------
+    async function loadAllData() {
+      try {
+        let allMatches = [];
+
+        // Load Men Fixtures
+        try {
+          const responseMen = await fetch('data/fixtures-men.json');
+          if (responseMen.ok) {
+            const dataMen = await responseMen.json();
+            for (const competition in dataMen) {
+              if (Array.isArray(dataMen[competition])) {
+                dataMen[competition].forEach(match => {
+                  allMatches.push({ ...match, competition_name: competition, team_type: 'M' });
+                });
+              }
+            }
+          }
+        } catch (err) {
+          console.error('Error loading men fixtures:', err);
+        }
+
+        // Load Women Fixtures
+        try {
+          const responseWomen = await fetch('data/fixtures-women.json');
+          if (responseWomen.ok) {
+            const dataWomen = await responseWomen.json();
+            for (const competition in dataWomen) {
+              if (Array.isArray(dataWomen[competition])) {
+                dataWomen[competition].forEach(match => {
+                  allMatches.push({ ...match, competition_name: competition, team_type: 'W' });
+                });
+              }
+            }
+          }
+        } catch (err) {
+          console.error('Error loading women fixtures:', err);
+        }
+
+        function getMatchTimestamp(match) {
+          let timeStr = match.time_th || match.time;
+          if (!timeStr || timeStr === 'TBC' || timeStr === '00:00') {
+            timeStr = '00:00';
+          }
+          const dtStr = `${match.date}T${timeStr.length === 5 ? timeStr + ':00' : timeStr}`;
+          const t = new Date(dtStr).getTime();
+          return isNaN(t) ? (new Date(match.date).getTime() || 0) : t;
+        }
+
+        const fixtures = allMatches
+          .filter(m => m.status === 'upcoming')
+          .sort((a, b) => getMatchTimestamp(a) - getMatchTimestamp(b));
+
+        const results = allMatches
+          .filter(m => m.status === 'completed')
+          .sort((a, b) => getMatchTimestamp(b) - getMatchTimestamp(a));
+
+        renderFixtures(fixtures.slice(0, 6));
+        renderResults(results.slice(0, 6));
+
+        const fcEl = document.getElementById('fixturesCount');
+        if (fcEl) fcEl.textContent = fixtures.length;
+        const rcEl = document.getElementById('resultsCount');
+        if (rcEl) rcEl.textContent = results.length;
+
+      } catch (error) {
+        console.error(error);
+        document.getElementById('fixturesContainer').innerHTML = '<div class="empty-state">⚠️ โหลดไม่สำเร็จ</div>';
+        document.getElementById('resultsContainer').innerHTML = '<div class="empty-state">⚠️ โหลดไม่สำเร็จ</div>';
+      }
+    }
+
+    // ---------- RENDER FIXTURES (CARDS) ----------
+    function renderFixtures(fixtures) {
+      const container = document.getElementById('fixturesContainer');
+      if (fixtures.length === 0) {
+        container.innerHTML = '<div class="empty-state"><span class="empty-icon">📅</span><p data-i18n="home.no_fixtures">ไม่มีโปรแกรมแข่งขัน</p></div>';
+        return;
+      }
+
+      container.innerHTML = fixtures.map(match => {
+        const lang = window.currentLang || 'th';
+        const compLogo = match.competition_logo || '';
+        const compName = formatCompetitionName(match.competition_name);
+        const rawTime = match.time_uk || match.time_th || match.time;
+        const displayTime = (!rawTime || rawTime === '00:00' || rawTime === 'TBC') ? 'TBC' : rawTime.substring(0,5);
+        const teamBadge = match.team_type || 'M';
+        const teamBadgeClass = teamBadge.toLowerCase();
+        const channelsIcons = (match.channels && match.channels.length > 0)
+          ? `<div class="channels-list">${match.channels.map(ch => 
+              `<span class="channel-badge" title="${ch.name}">
+                ${ch.logo ? `<img src="${ch.logo}" alt="${ch.name}" title="${ch.name}" class="channel-logo" onerror="this.style.display='none'">` : `<span class="channel-name">${ch.name}</span>`}
+              </span>`
+            ).join('')}</div>`
+          : '';
+
+        return `
+        <a href="match-detail.html?id=${match.id}" class="card-link">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-date"><span class="date-icon">📅</span><span>${formatDate(match.date, window.currentLang||'th')}</span></div>
+              <div class="card-competition">
+                ${compLogo ? `<img src="${compLogo}" alt="" onerror="this.style.display='none'" style="height:20px;">` : ''}
+                <span>${compName}</span>
+                <span class="team-badge ${teamBadgeClass}">${teamBadge}</span>
+              </div>
+            </div>
+            <div class="card-fixture">
+              <div class="team">
+                <img src="${match.home_logo}" alt="${match.home_team}" title="${match.home_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+                <div class="team-divider"></div>
+                <span class="team-name">${renderTeamNameHTML(match.home_team)}</span>
+              </div>
+              <div class="fixture-info">
+                <span class="fixture-time">${displayTime}</span>
+                <span class="fixture-vs">VS</span>
+              </div>
+              <div class="team">
+                <img src="${match.away_logo}" alt="${match.away_team}" title="${match.away_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+                <div class="team-divider"></div>
+                <span class="team-name">${renderTeamNameHTML(match.away_team)}</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="venue-item"><span class="venue-icon">📍</span><span>${match.venue}</span></div>
+              ${channelsIcons}
+            </div>
+          </div>
+        </a>`;
+      }).join('');
+    }
+
+    // ---------- RENDER RESULTS (CARDS) ----------
+    function renderResults(results) {
+      const container = document.getElementById('resultsContainer');
+      if (results.length === 0) {
+        container.innerHTML = '<div class="empty-state"><span class="empty-icon">📊</span><p data-i18n="home.no_results">ยังไม่มีผลการแข่งขัน</p></div>';
+        return;
+      }
+
+      container.innerHTML = results.map(match => {
+        const homeWin = match.home_score > match.away_score;
+        const awayWin = match.away_score > match.home_score;
+        const compName = formatCompetitionName(match.competition_name);
+        const teamBadge = match.team_type || 'M';
+        const teamBadgeClass = teamBadge.toLowerCase();
+
+        return `
+        <a href="match-detail.html?id=${match.id}" class="card-link">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-date"><span class="date-icon">📅</span><span>${formatDate(match.date, window.currentLang||'th')}</span></div>
+              <div class="card-competition">
+                ${match.competition_logo ? `<img src="${match.competition_logo}" alt="" onerror="this.style.display='none'" style="height:20px;">` : ''}
+                <span>${compName}</span>
+                <span class="team-badge ${teamBadgeClass}">${teamBadge}</span>
+              </div>
+            </div>
+            <div class="card-result">
+              <div class="team ${homeWin ? 'winner' : ''}">
+                <img src="${match.home_logo}" alt="${match.home_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+                <div class="team-divider"></div>
+                <span class="team-name">${renderTeamNameHTML(match.home_team)}</span>
+              </div>
+              <div class="score-display">
+                <span class="score ${homeWin ? 'winner' : ''}">${match.home_score}</span>
+                <span class="score-divider">-</span>
+                <span class="score ${awayWin ? 'winner' : ''}">${match.away_score}</span>
+              </div>
+              <div class="team ${awayWin ? 'winner' : ''}">
+                <img src="${match.away_logo}" alt="${match.away_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+                <div class="team-divider"></div>
+                <span class="team-name">${renderTeamNameHTML(match.away_team)}</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="venue-item"><span class="venue-icon">📍</span><span>${match.venue}</span></div>
+            </div>
+          </div>
+        </a>`;
+      }).join('');
+    }
+
+    // ---------- INIT ----------
+    document.addEventListener('DOMContentLoaded', () => {
+      loadAllData();
+    });
+  </script>
+</body>
+</html>

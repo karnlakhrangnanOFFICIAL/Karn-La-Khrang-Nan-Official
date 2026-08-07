@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "date": "2026-08-08",
+    "time": "15:00",
+    "team": "women",
+    "competition": "wsl",
+    "competition_logo": "databases/logo/competitions/women/women_super_league.png",
+    "home_team": "KANLAKHRANGNAN",
+    "home_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "away_team": "London City Lionesses",
+    "away_logo": "databases/logo/teams/London_City_Lionesses.svg",
+    "venue": "KANLAKHRANGNAN Stadium",
+    "status": "upcoming"
+  },
+  {
+    "id": 2,
+    "date": "2026-08-09",
+    "time": "19:00",
+    "team": "men",
+    "competition": "premier-league",
+    "competition_logo": "databases/logo/competitions/men/england_english-premier-league.football-logos.cc.svg",
+    "home_team": "KANLAKHRANGNAN",
+    "home_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "away_team": "Manchester City",
+    "away_logo": "databases/logo/teams/england_manchester-city.football-logos.cc.svg",
+    "venue": "KANLAKHRANGNAN Stadium",
+    "status": "upcoming"
+  },
+  {
+    "id": 3,
+    "date": "2026-08-15",
+    "time": "15:00",
+    "team": "women",
+    "competition": "uwcl-qualifiers",
+    "competition_logo": "databases/logo/competitions/women/women_uwcl_champions_league_logo.svg",
+    "home_team": "Juventus",
+    "home_logo": "databases/logo/teams/italy_juventus--white.football-logos.cc.svg",
+    "away_team": "KANLAKHRANGNAN",
+    "away_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "venue": "Juventus Stadium",
+    "status": "upcoming"
+  },
+  {
+    "id": 4,
+    "date": "2026-08-16",
+    "time": "17:30",
+    "team": "men",
+    "competition": "premier-league",
+    "competition_logo": "databases/logo/competitions/men/england_english-premier-league.football-logos.cc.svg",
+    "home_team": "Liverpool",
+    "home_logo": "databases/logo/teams/england_liverpool.football-logos.cc.svg",
+    "away_team": "KANLAKHRANGNAN",
+    "away_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "venue": "Anfield",
+    "status": "upcoming"
+  },
+  {
+    "id": 5,
+    "date": "2026-08-22",
+    "time": "12:30",
+    "team": "women",
+    "competition": "wsl",
+    "competition_logo": "databases/logo/competitions/women/women_super_league.png",
+    "home_team": "Arsenal",
+    "home_logo": "databases/logo/teams/england_arsenal.football-logos.cc.svg",
+    "away_team": "KANLAKHRANGNAN",
+    "away_logo": "databases/logo/teams/england_chelsea.football-logos.cc.svg",
+    "venue": "Emirates Stadium",
+    "status": "upcoming"
+  }
+]
