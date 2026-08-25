@@ -42,79 +42,103 @@ function formatCompetitionName(name) {
   return name.replace(/-/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
-// ---------- RENDER FUNCTIONS ----------
 function renderFixtures(container, fixtures, badgeClass) {
   if (!container) return;
+  const lang = window.currentLang || 'th';
   if (fixtures.length === 0) {
-    container.innerHTML = '<div class="empty-state"><span class="empty-icon">📅</span><p>No upcoming fixtures</p></div>';
+    const noMsg = lang === 'th' ? 'ไม่มีโปรแกรมแข่งขัน' : 'No upcoming fixtures';
+    container.innerHTML = `<div class="empty-state"><span class="empty-icon">📅</span><p>${noMsg}</p></div>`;
     return;
   }
-  container.innerHTML = fixtures.map(match => {
+
+  const timeNote = lang === 'th' 
+    ? 'ℹ️ เวลาการแข่งขันแสดงเป็นเวลาประเทศอังกฤษ (UK Time - GMT/BST)' 
+    : 'ℹ️ Match times are displayed in UK Time (GMT/BST)';
+
+  const cardsHtml = fixtures.map(match => {
     const compLogo = match.competition_logo || '';
     const compName = formatCompetitionName(match.competition_name || match.competition);
-    const displayTime = (match.time === '00:00' || match.time === 'TBC' || !match.time) ? 'TBC' : match.time.substring(0, 5);
+    const localDT = window.getLocalMatchDateTime ? window.getLocalMatchDateTime(match.date, match.time_th || match.time, match.time_uk) : { date: match.date, time: (match.time_uk || match.time_th || match.time || 'TBC').substring(0,5) };
+    const displayDate = localDT.date;
+    const displayTime = localDT.time === 'TBC' ? 'TBC' : localDT.time;
     const channelsIcons = (match.channels && match.channels.length > 0)
-      ? `<div class="channels-list channels-icons-only">${match.channels.map(ch => 
+      ? `<div class="channels-list">${match.channels.map(ch => 
           `<span class="channel-badge" title="${ch.name}">
-            ${ch.logo ? `<img src="${ch.logo}" alt="${ch.name}" class="channel-logo" onerror="this.style.display='none'">` : ''}
-            <span class="channel-name" style="display:none;">${ch.name}</span>
+            ${ch.logo ? `<img src="${ch.logo}" alt="${ch.name}" title="${ch.name}" class="channel-logo" onerror="this.style.display='none'">` : `<span class="channel-name">${ch.name}</span>`}
           </span>`
         ).join('')}</div>`
       : '';
 
+    const teamParam = badgeClass === 'W' ? '&team=women' : '&team=men';
     return `
-    <a href="match-detail.html?id=${match.id}" class="card-link">
-      <div class="card fixture-card-mobile">
-        <div class="match-meta">
-          <span>${formatDate(match.date, 'th')}</span>
-          <span>· ${displayTime}</span>
-          <span>· ${compName}</span>
-          <span>📍 ${match.venue}</span>
+    <a href="match-detail.html?id=${match.id}${teamParam}" class="card-link">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-date"><span class="date-icon">📅</span><span>${formatDate(displayDate, lang)}</span></div>
+          <div class="card-competition">
+            ${compLogo ? `<img src="${compLogo}" alt="" onerror="this.style.display='none'" style="height:20px;">` : ''}
+            <span>${compName}</span>
+            <span class="team-badge ${badgeClass === 'W' ? 'women' : 'men'}">${badgeClass}</span>
+          </div>
         </div>
-        <div class="match-versus">
-          <div class="team-block">
+        <div class="card-fixture">
+          <div class="team">
             <img src="${match.home_logo}" alt="${match.home_team}" onerror="this.src='assets/images/placeholder-team.svg'">
-            <span>${match.home_team}</span>
+            <div class="team-divider"></div>
+            <span class="team-name">${typeof renderTeamNameHTML === 'function' ? renderTeamNameHTML(match.home_team) : match.home_team}</span>
           </div>
-          <div class="vs-text">VS</div>
-          <div class="team-block">
-            <span>${match.away_team}</span>
+          <div class="fixture-info">
+                ${match.status === 'live' ? `<div style="display:flex; gap:10px; font-size:1.5rem; font-weight:bold;"><span style="color:var(--primary-color);">${match.home_score||0}</span><span>-</span><span style="color:var(--primary-color);">${match.away_score||0}</span></div>` : '<span class="fixture-vs">VS</span>'}
+                <span class="fixture-time" ${match.status==='live' ? 'style="margin-top:5px;"' : ''}>${displayTime}</span>
+              </div>
+          <div class="team">
             <img src="${match.away_logo}" alt="${match.away_team}" onerror="this.src='assets/images/placeholder-team.svg'">
+            <div class="team-divider"></div>
+            <span class="team-name">${typeof renderTeamNameHTML === 'function' ? renderTeamNameHTML(match.away_team) : match.away_team}</span>
           </div>
         </div>
-        <div class="match-channels">
+        <div class="card-footer">
+          <div class="venue-item"><span class="venue-icon">📍</span><span>${match.venue}</span></div>
           ${channelsIcons}
         </div>
       </div>
     </a>`;
   }).join('');
+
+  container.innerHTML = `<div class="time-zone-note" style="font-size:0.8rem; color:var(--text-muted, #94a3b8); margin-bottom:0.75rem; font-weight:500;">${timeNote}</div>${cardsHtml}`;
 }
 
 function renderResults(container, results, badgeClass) {
   if (!container) return;
+  const lang = window.currentLang || 'th';
   if (results.length === 0) {
-    container.innerHTML = '<div class="empty-state"><span class="empty-icon">📊</span><p>No results yet</p></div>';
+    const noMsg = lang === 'th' ? 'ยังไม่มีผลการแข่งขัน' : 'No results yet';
+    container.innerHTML = `<div class="empty-state"><span class="empty-icon">📊</span><p>${noMsg}</p></div>`;
     return;
   }
+  const teamParam = badgeClass === 'W' ? '&team=women' : '&team=men';
   container.innerHTML = results.map(match => {
+    const localDT = window.getLocalMatchDateTime ? window.getLocalMatchDateTime(match.date, match.time_th || match.time, match.time_uk) : { date: match.date };
+    const displayDate = localDT.date;
     const homeWin = match.home_score > match.away_score;
     const awayWin = match.away_score > match.home_score;
     const compName = formatCompetitionName(match.competition_name || match.competition);
     return `
-    <a href="match-detail.html?id=${match.id}" class="card-link">
+    <a href="match-detail.html?id=${match.id}${teamParam}" class="card-link">
       <div class="card">
         <div class="card-header">
-          <div class="card-date"><span class="date-icon">📅</span><span>${formatDate(match.date, 'th')}</span></div>
+          <div class="card-date"><span class="date-icon">📅</span><span>${formatDate(displayDate, lang)}</span></div>
           <div class="card-competition">
             ${match.competition_logo ? `<img src="${match.competition_logo}" alt="" onerror="this.style.display='none'" style="height:20px;">` : ''}
             <span>${compName}</span>
-            <span class="team-badge ${badgeClass === 'W' ? 'women' : ''}">${badgeClass}</span>
+            <span class="team-badge ${badgeClass === 'W' ? 'women' : 'men'}">${badgeClass}</span>
           </div>
         </div>
         <div class="card-result">
           <div class="team ${homeWin ? 'winner' : ''}">
             <img src="${match.home_logo}" alt="${match.home_team}" onerror="this.src='assets/images/placeholder-team.svg'">
-            <span class="team-name">${match.home_team}</span>
+            <div class="team-divider"></div>
+            <span class="team-name">${typeof renderTeamNameHTML === 'function' ? renderTeamNameHTML(match.home_team) : match.home_team}</span>
           </div>
           <div class="score-display">
             <span class="score ${homeWin ? 'winner' : ''}">${match.home_score}</span>
@@ -123,32 +147,34 @@ function renderResults(container, results, badgeClass) {
           </div>
           <div class="team ${awayWin ? 'winner' : ''}">
             <img src="${match.away_logo}" alt="${match.away_team}" onerror="this.src='assets/images/placeholder-team.svg'">
-            <span class="team-name">${match.away_team}</span>
+            <div class="team-divider"></div>
+            <span class="team-name">${typeof renderTeamNameHTML === 'function' ? renderTeamNameHTML(match.away_team) : match.away_team}</span>
           </div>
         </div>
         <div class="card-footer">
-          <span class="venue-icon">📍</span>
-          <span>${match.venue}</span>
+          <div class="venue-item"><span class="venue-icon">📍</span><span>${match.venue}</span></div>
         </div>
       </div>
     </a>`;
   }).join('');
 }
 
-function renderTable(container, table, highlightTeam) {
-  if (table.length === 0) {
+function renderTable(container, table, highlightTeam, compLogo, compName) {
+  if (!table || table.length === 0) {
     container.innerHTML = '<div class="empty-state"><span class="empty-icon">🏆</span><p>No table data yet</p></div>';
     return;
   }
+  const logoHtml = compLogo ? `<div class="table-comp-header" style="display:flex; align-items:center; gap:12px; margin-bottom:1rem; padding:10px 14px; background:var(--surface, rgba(255,255,255,0.04)); border:1px solid var(--border-color, rgba(255,255,255,0.08)); border-radius:8px;"><img src="${compLogo}" alt="${compName || ''}" onerror="this.style.display='none'" style="height:32px; max-width:120px; object-fit:contain;"><span style="font-weight:700; font-size:1.05rem; color:var(--ink);">${compName || ''}</span></div>` : '';
   container.innerHTML = `
+    ${logoHtml}
     <table class="league-table">
       <thead><tr><th>#</th><th>Logo</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead>
       <tbody>
         ${table.map(row => `
           <tr class="${row.team === highlightTeam ? 'highlight' : ''}">
             <td>${row.pos}</td>
-            <td class="logo-cell">${row.logo ? `<img src="${row.logo}" alt="${row.team}" style="height:24px;width:auto;" onerror="this.style.display='none'">` : ''}</td>
-            <td class="team-cell">${row.team}</td>
+            <td class="logo-cell">${row.logo ? `<img src="${row.logo}" alt="${row.team}" class="table-team-logo" onerror="this.style.display='none'">` : ''}</td>
+            <td class="team-cell">${typeof renderTeamNameHTML === 'function' ? renderTeamNameHTML(row.team) : row.team}</td>
             <td>${row.p}</td><td>${row.w}</td><td>${row.d}</td><td>${row.l}</td>
             <td>${row.gf}</td><td>${row.ga}</td><td>${row.gd}</td>
             <td><strong>${row.pts}</strong></td>
@@ -158,22 +184,54 @@ function renderTable(container, table, highlightTeam) {
     </table>`;
 }
 
-function renderPlayers(container, players) {
-  container.innerHTML = players.map(p => `
-    <div class="player-card">
-      <img src="${p.image}" alt="${p.name}" onerror="this.src='assets/images/placeholder-player.svg'">
-      <div class="player-info">
-        <h3>${p.name}</h3>
-        <span class="player-number">#${p.number || '?'}</span>
-        <span class="player-position">${p.position}</span>
-        <div class="player-stats">
-          <span>⚽ ${p.goals || 0} goals</span>
-          <span>🎯 ${p.assists || 0} assists</span>
-          <span>👕 ${p.appearances || 0} apps</span>
+function renderPlayers(container, players, teamType) {
+  const isTh = (window.currentLang || 'th') === 'th';
+  const goalsText = isTh ? 'ประตู' : 'goals';
+  const assistsText = isTh ? 'แอสซิสต์' : 'assists';
+  const appsText = isTh ? 'นัด' : 'apps';
+
+  container.innerHTML = players.map(p => {
+    let pos = p.position || '';
+    pos = formatPlayerPosition(p.position, isTh);
+    let origImage = p.image || 'assets/images/placeholder-player.svg';
+    let pImage = origImage;
+    if (pImage.endsWith('.jpg') || pImage.endsWith('.png')) {
+      pImage = pImage.replace(/\.(jpg|png)$/i, '.webp');
+    }
+
+    return `
+      <a href="player-profile.html?id=${p.id}&team=${teamType}" class="player-card" style="text-decoration: none; color: inherit; display: block;">
+        <img src="${pImage}" alt="${p.name}" loading="lazy" onerror="if(this.src.endsWith('.webp') && '${origImage}'!=='${pImage}'){this.src='${origImage}';}else{this.src='assets/images/placeholder-player.svg';}">
+        <div class="player-info">
+          <h3>${p.name}</h3>
+          <span class="player-number">#${p.number || '?'}</span>
+          <span class="player-position">${pos}</span>
+          <div class="player-stats">
+            <span>⚽ ${p.goals || 0} ${goalsText}</span>
+            <span>🎯 ${p.assists || 0} ${assistsText}</span>
+            <span>👕 ${p.appearances || 0} ${appsText}</span>
+          </div>
         </div>
-      </div>
-    </div>
-  `).join('');
+      </a>
+    `;
+  }).join('');
+}
+
+// ---------- SAFE FETCH JSON ----------
+async function safeFetchJson(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const contentType = res.headers.get('content-type');
+    if (contentType && !contentType.includes('json') && !contentType.includes('javascript') && !contentType.includes('text/plain')) {
+      return null;
+    }
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    console.warn(`Safe fetch failed for ${url}:`, e);
+    return null;
+  }
 }
 
 // ---------- LOAD DATA ----------
@@ -181,15 +239,19 @@ async function loadMenFixtures() {
   const container = document.getElementById('menFixturesContainer');
   if (!container) return;
   try {
-    const res = await fetch('data/fixtures-men.json');
-    const data = await res.json();
-    let all = [];
-    for (const comp in data) {
-      if (Array.isArray(data[comp])) {
-        data[comp].forEach(m => all.push({ ...m, competition_name: comp }));
-      }
+    let all = await safeFetchJson('data/fixtures.json');
+    if (!all || !Array.isArray(all)) {
+      container.innerHTML = '<div class="empty-state"><span class="empty-icon">📅</span><p>No upcoming fixtures</p></div>';
+      return;
     }
-    const upcoming = all.filter(m => m.status === 'upcoming').sort((a,b) => new Date(a.date+'T'+(a.time||'00:00')) - new Date(b.date+'T'+(b.time||'00:00')));
+    all = all.filter(m => m.team_type === 'M');
+    const upcoming = all.filter(m => m.status === 'upcoming' || m.status === 'live').sort((a,b) => {
+      let timeA = a.time || '00:00';
+      if (timeA === 'TBC') timeA = '00:00';
+      let timeB = b.time || '00:00';
+      if (timeB === 'TBC') timeB = '00:00';
+      return new Date(a.date+'T'+timeA) - new Date(b.date+'T'+timeB);
+    });
     renderFixtures(container, upcoming, 'M');
   } catch(e) {
     container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error loading fixtures</p></div>';
@@ -201,14 +263,12 @@ async function loadMenResults() {
   const container = document.getElementById('menResultsContainer');
   if (!container) return;
   try {
-    const res = await fetch('data/fixtures-men.json');
-    const data = await res.json();
-    let all = [];
-    for (const comp in data) {
-      if (Array.isArray(data[comp])) {
-        data[comp].forEach(m => all.push({ ...m, competition_name: comp }));
-      }
+    let all = await safeFetchJson('data/fixtures.json');
+    if (!all || !Array.isArray(all)) {
+      container.innerHTML = '<div class="empty-state"><span class="empty-icon">📊</span><p>No results yet</p></div>';
+      return;
     }
+    all = all.filter(m => m.team_type === 'M');
     const results = all.filter(m => m.status === 'completed').sort((a,b) => new Date(b.date) - new Date(a.date));
     renderResults(container, results, 'M');
   } catch(e) {
@@ -221,10 +281,30 @@ async function loadMenTable() {
   const container = document.getElementById('menTableContainer');
   if (!container) return;
   try {
-    const res = await fetch('data/tables-men.json');
-    const data = await res.json();
-    const table = Array.isArray(data) ? data : (data.standings || data.table || []);
-    renderTable(container, table, 'Chelsea');
+    const SPREADSHEET_ID = '1mdFJwRXRB-xBYiDMJK0LoUD9n3Jf9iF1x6NH1V4W1gY';
+    const res = await fetch(`/api/sheets/${SPREADSHEET_ID}?gid=0`);
+    const sheetData = await res.json();
+    
+    let table = [];
+    let compLogo = "databases/logo/competitions/men/premier-league.png";
+    let compName = "premier-league";
+
+    if (sheetData && sheetData.success && Array.isArray(sheetData.data)) {
+      // Use data from Google Sheet
+      table = sheetData.data.filter(row => row.pos != null && row.pos !== '');
+    } else {
+      // Fallback to static file if API fails
+      const data = await safeFetchJson('data/tables-men.json');
+      table = Array.isArray(data) ? data : (data?.standings || data?.table || []);
+      if (data && data.competition_logo) compLogo = data.competition_logo;
+      if (data && data.competition) compName = data.competition;
+    }
+
+    if (!table || table.length === 0) {
+      container.innerHTML = '<div class="empty-state"><span class="empty-icon">🏆</span><p>No table data yet</p></div>';
+      return;
+    }
+    renderTable(container, table, 'Chelsea', compLogo, compName);
   } catch(e) {
     container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error loading table</p></div>';
     console.error('Table error:', e);
@@ -235,29 +315,41 @@ async function loadMenPlayers() {
   const container = document.getElementById('menPlayersContainer');
   if (!container) return;
   try {
-    const res = await fetch(API_PLAYERS_MEN);
-    const players = await res.json();
+    let players = await safeFetchJson('data/players-men.json');
+
+    if (!Array.isArray(players) || players.length === 0) {
+      players = await safeFetchJson(API_PLAYERS_MEN);
+    }
+
     if (!Array.isArray(players) || players.length === 0) {
       container.innerHTML = '<div class="empty-state"><span class="empty-icon">👕</span><p>No players found</p></div>';
       return;
     }
-    renderPlayers(container, players);
+    renderPlayers(container, players, container.id.includes('women') ? 'women' : 'men');
   } catch(e) {
     container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error loading players</p></div>';
     console.error('Players error:', e);
   }
 }
 
-// Women functions similar (loadWomenFixtures, etc.) use fallback JSON
+// Women functions similar
 async function loadWomenFixtures() {
   const container = document.getElementById('womenFixturesContainer');
   if (!container) return;
   try {
-    const res = await fetch('data/fixtures-women.json');
-    const data = await res.json();
-    let all = [];
-    for (const comp in data) { if (Array.isArray(data[comp])) data[comp].forEach(m => all.push({ ...m, competition_name: comp })); }
-    renderFixtures(container, all.filter(m => m.status === 'upcoming').sort((a,b) => new Date(a.date+'T'+(a.time||'00:00')) - new Date(b.date+'T'+(b.time||'00:00'))), 'W');
+    let all = await safeFetchJson('data/fixtures.json');
+    if (!all || !Array.isArray(all)) {
+      container.innerHTML = '<div class="empty-state"><span class="empty-icon">📅</span><p>No upcoming fixtures</p></div>';
+      return;
+    }
+    all = all.filter(m => m.team_type === 'W');
+    renderFixtures(container, all.filter(m => m.status === 'upcoming' || m.status === 'live').sort((a,b) => {
+      let timeA = a.time || '00:00';
+      if (timeA === 'TBC') timeA = '00:00';
+      let timeB = b.time || '00:00';
+      if (timeB === 'TBC') timeB = '00:00';
+      return new Date(a.date+'T'+timeA) - new Date(b.date+'T'+timeB);
+    }), 'W');
   } catch(e) { container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error</p></div>'; console.error(e); }
 }
 
@@ -265,10 +357,12 @@ async function loadWomenResults() {
   const container = document.getElementById('womenResultsContainer');
   if (!container) return;
   try {
-    const res = await fetch('data/fixtures-women.json');
-    const data = await res.json();
-    let all = [];
-    for (const comp in data) { if (Array.isArray(data[comp])) data[comp].forEach(m => all.push({ ...m, competition_name: comp })); }
+    let all = await safeFetchJson('data/fixtures.json');
+    if (!all || !Array.isArray(all)) {
+      container.innerHTML = '<div class="empty-state"><span class="empty-icon">📊</span><p>No results yet</p></div>';
+      return;
+    }
+    all = all.filter(m => m.team_type === 'W');
     renderResults(container, all.filter(m => m.status === 'completed').sort((a,b) => new Date(b.date)-new Date(a.date)), 'W');
   } catch(e) { container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error</p></div>'; console.error(e); }
 }
@@ -277,10 +371,15 @@ async function loadWomenTable() {
   const container = document.getElementById('womenTableContainer');
   if (!container) return;
   try {
-    const res = await fetch('data/tables-women.json');
-    const data = await res.json();
+    const data = await safeFetchJson('data/tables-women.json');
+    if (!data) {
+      container.innerHTML = '<div class="empty-state"><span class="empty-icon">🏆</span><p>No table data yet</p></div>';
+      return;
+    }
     const table = Array.isArray(data) ? data : (data.standings || data.table || []);
-    renderTable(container, table, 'Chelsea Women');
+    const compLogo = data?.competition_logo || '';
+    const compName = data?.competition || '';
+    renderTable(container, table, 'Chelsea Women', compLogo, compName);
   } catch(e) { container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error</p></div>'; console.error(e); }
 }
 
@@ -288,14 +387,18 @@ async function loadWomenPlayers() {
   const container = document.getElementById('womenPlayersContainer');
   if (!container) return;
   try {
-    const res = await fetch('data/players-women.json');
-    const players = await res.json();
+    let players = await safeFetchJson('data/players-women.json');
+
+    if (!Array.isArray(players) || players.length === 0) {
+      players = await safeFetchJson(API_PLAYERS_WOMEN);
+    }
+
     if (!Array.isArray(players) || players.length === 0) {
       container.innerHTML = '<div class="empty-state"><span class="empty-icon">👕</span><p>No players found</p></div>';
       return;
     }
-    renderPlayers(container, players);
-  } catch(e) { container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error</p></div>'; console.error(e); }
+    renderPlayers(container, players, container.id.includes('women') ? 'women' : 'men');
+  } catch(e) { container.innerHTML = '<div class="empty-state"><span class="empty-icon">⚠️</span><p>Error loading players</p></div>'; console.error('Women players error:', e); }
 }
 
 function initTeamPage() {
@@ -309,3 +412,339 @@ function initTeamPage() {
 }
 
 document.addEventListener('DOMContentLoaded', initTeamPage);
+window.addEventListener('languageChanged', initTeamPage);
+
+// ============================================
+// PLAYER PROFILE JS
+// ============================================
+
+
+
+// Function to fetch and map players from Google Sheet
+async function fetchPlayersFromSheet(isMen = true) {
+  if (!isMen) {
+    // Google Sheets currently only provides profile-men tab
+    return [];
+  }
+  const SPREADSHEET_ID = '11aZTuUOCacJrnx8nAUKu-PQ59NAVoz1nm8vEOE8x6xs';
+  const sheetParam = 'gid=1721120655&sheet=profile-men';
+  try {
+    const res = await fetch(`/api/sheets/${SPREADSHEET_ID}?${sheetParam}`);
+    const data = await res.json();
+    if (!data.success || !Array.isArray(data.data)) throw new Error(data.error || 'Failed to fetch sheet');
+
+    // Try to load local JSON as fallback/merge for extra details if needed
+    let localData = [];
+    try {
+      const localRes = await fetch(isMen ? 'data/players-men.json' : 'data/players-women.json');
+      localData = await localRes.json();
+    } catch(e) {
+      console.warn('Could not load local JSON');
+    }
+
+    return data.data.map((row, index) => {
+      const sheetName = row.name || row['ชื่อ'] || '--';
+      if (sheetName === '--') return null;
+
+      const localMatch = localData.find(p => p.name.toLowerCase() === sheetName.toLowerCase()) || {};
+
+      // Calculate or format age/dob
+      let age = row.age || localMatch.age || null;
+      let dobIso = row.date_of_birth || localMatch.date_of_birth || null;
+      if (!dobIso && row['วันเกิด']) {
+        const parts = row['วันเกิด'].split('/');
+        if (parts.length === 3) {
+          dobIso = `${parts[2]}-${parts[1]}-${parts[0]}`;
+          const dob = new Date(parts[2], parts[1] - 1, parts[0]);
+          const diffMs = Date.now() - dob.getTime();
+          age = Math.abs(new Date(diffMs).getUTCFullYear() - 1970);
+        }
+      }
+
+      // Format image path
+      let rawImg = row.image || row['link png'] || localMatch.image || 'placeholder-player.svg';
+      rawImg = String(rawImg).trim().split(' ')[0]; // Handle "reece-james.png (หรือ James.jpg)"
+      let imagePath = rawImg;
+      if (!imagePath.startsWith('assets/') && !imagePath.startsWith('http')) {
+        imagePath = (isMen ? 'assets/images/players/men/' : 'assets/images/players/women/') + imagePath;
+      }
+
+      // Format Market Value
+      let mv = row.market_value || localMatch.market_value || null;
+      if (mv && typeof mv === 'string') {
+        mv = Number(mv.replace(/[^0-9.]/g, '')) || mv;
+      }
+
+      const idVal = row.id ? String(row.id) : (localMatch.id ? String(localMatch.id) : `sheet_${index}`);
+
+      return {
+        id: idVal,
+        name: sheetName,
+        number: row.number || (row['เบอร์เสื้อ'] && row['เบอร์เสื้อ'] !== '-' ? row['เบอร์เสื้อ'] : localMatch.number),
+        position: row.position || localMatch.position || 'Unknown',
+        nationality: row.nationality || row['สัญชาติ'] || localMatch.nationality || '--',
+        image: imagePath,
+        height: row.height || localMatch.height || null,
+        foot: row.foot || localMatch.foot || null,
+        date_of_birth: dobIso,
+        age: age,
+        current_club: row.current_club || localMatch.current_club || 'Chelsea FC',
+        joined: row.joined || localMatch.joined || null,
+        signed_from: row.signed_from || localMatch.signed_from || null,
+        market_value: mv,
+        appearances: row.appearances !== undefined ? Number(row.appearances) : (localMatch.appearances || 0),
+        goals: row.goals !== undefined ? Number(row.goals) : (localMatch.goals || 0),
+        assists: row.assists !== undefined ? Number(row.assists) : (localMatch.assists || 0),
+        biography_th: row.biography_th || localMatch.biography_th || (typeof row.biography === 'object' ? row.biography?.th : '') || (typeof localMatch.biography === 'object' ? localMatch.biography?.th : '') || (typeof row.biography === 'string' ? row.biography : '') || (typeof localMatch.biography === 'string' ? localMatch.biography : ''),
+        biography_en: row.biography_en || localMatch.biography_en || (typeof row.biography === 'object' ? row.biography?.en : '') || (typeof localMatch.biography === 'object' ? localMatch.biography?.en : ''),
+        bio: (row.biography_th || row.biography_en || localMatch.biography_th || localMatch.biography_en)
+          ? { th: row.biography_th || localMatch.biography_th || '', en: row.biography_en || localMatch.biography_en || '' } 
+          : (row.biography || row.bio || localMatch.biography || localMatch.bio || ''),
+        biography: (row.biography_th || row.biography_en || localMatch.biography_th || localMatch.biography_en)
+          ? { th: row.biography_th || localMatch.biography_th || '', en: row.biography_en || localMatch.biography_en || '' } 
+          : (row.biography || row.bio || localMatch.biography || localMatch.bio || ''),
+        instagram: row.instagram || localMatch.instagram || '',
+        twitter: row.twitter || localMatch.twitter || ''
+      };
+    }).filter(Boolean);
+  } catch (err) {
+    console.error('Error fetching players from sheet:', err);
+    return null;
+  }
+}
+
+function formatPlayerPosition(pos, isTh) {
+  if (!pos) return '--';
+  if (!isTh) return pos;
+  const p = pos.toLowerCase();
+  if (p.includes('goalkeeper') || p.includes('gk')) return 'ผู้รักษาประตู';
+  if (p.includes('defender') || p.includes('cb') || p.includes('lb') || p.includes('rb') || p.includes('wb')) return 'กองหลัง';
+  if (p.includes('midfielder') || p.includes('cm') || p.includes('dm') || p.includes('am')) return 'กองกลาง';
+  if (p.includes('forward') || p.includes('striker') || p.includes('winger') || p.includes('st') || p.includes('rw') || p.includes('lw') || p.includes('cf')) return 'กองหน้า';
+  return pos;
+}
+
+async function initPlayerProfile() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const playerId = urlParams.get('id');
+  const requestedTeam = urlParams.get('team');
+  let teamType = requestedTeam || 'men';
+  let isMen = teamType === 'men';
+  
+  if (!playerId) {
+    if (document.getElementById('playerName')) {
+      document.getElementById('playerName').textContent = 'Player Not Found';
+    }
+    return;
+  }
+  
+  try {
+    const normalizeName = (str) => {
+      if (!str) return '';
+      return str.toLowerCase()
+        .replace(/-/g, ' ')
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9 ]/g, '')
+        .trim();
+    };
+
+    let playersMen = [];
+    let playersWomen = [];
+
+    if (isMen) {
+      try {
+        playersMen = await fetchPlayersFromSheet(true) || [];
+      } catch (e) {
+        console.warn('Failed to fetch men players from API', e);
+      }
+      if (!playersMen.length) {
+        playersMen = await safeFetchJson('data/players-men.json') || [];
+      }
+    } else {
+      playersWomen = await safeFetchJson('data/players-women.json') || [];
+    }
+    
+    let primaryList = isMen ? playersMen : playersWomen;
+    let secondaryList = isMen ? playersWomen : (await fetchPlayersFromSheet(true) || await safeFetchJson('data/players-men.json') || []);
+    
+    const targetId = decodeURIComponent(playerId).trim();
+    const targetNorm = normalizeName(targetId);
+    
+    const findInList = (list) => {
+      if (!Array.isArray(list)) return null;
+      return list.find(p => {
+        if (!p) return false;
+        if (String(p.id) === String(targetId)) return true;
+        if (p.name) {
+          const pNorm = normalizeName(p.name);
+          if (pNorm === targetNorm) return true;
+          if (pNorm && targetNorm && (pNorm.includes(targetNorm) || targetNorm.includes(pNorm))) return true;
+        }
+        return false;
+      });
+    };
+    
+    let player = findInList(primaryList);
+    if (!player && !requestedTeam) {
+      player = findInList(secondaryList);
+      if (player) {
+        isMen = !isMen;
+      }
+    }
+    
+    if (!player) {
+      if (document.getElementById('playerName')) {
+        document.getElementById('playerName').textContent = 'Player Not Found';
+      }
+      return;
+    }
+    
+    // Render Player Info
+    const isTh = (window.currentLang || 'th') === 'th';
+    document.getElementById('playerName').textContent = player.name;
+    document.getElementById('playerNumber').textContent = '#' + (player.number || '?');
+    let origImg = player.image || 'assets/images/placeholder-player.svg';
+    let pImg = origImg;
+    if (pImg.endsWith('.jpg') || pImg.endsWith('.png')) {
+      pImg = pImg.replace(/\.(jpg|png)$/i, '.webp');
+    }
+    const playerImgEl = document.getElementById('playerImage');
+    if (playerImgEl) {
+      playerImgEl.src = pImg;
+      playerImgEl.onerror = function() {
+        if (this.src.endsWith('.webp') && origImg !== pImg) {
+          this.src = origImg;
+        } else {
+          this.src = 'assets/images/placeholder-player.svg';
+        }
+      };
+    }
+    document.getElementById('playerTeamBadge').textContent = isMen ? (isTh ? 'ทีมชาย' : "MEN'S TEAM") : (isTh ? 'ทีมหญิง' : "WOMEN'S TEAM");
+
+    // Update active nav link & back link & document title based on team (men / women)
+    const menNavLink = document.querySelector('.nav-links a[href="men-team.html"]');
+    const womenNavLink = document.querySelector('.nav-links a[href="women-team.html"]');
+    const backLink = document.getElementById('playerBackLink');
+
+    if (isMen) {
+      if (menNavLink) menNavLink.classList.add('active');
+      if (womenNavLink) womenNavLink.classList.remove('active');
+      if (backLink) {
+        backLink.href = 'men-team.html';
+        backLink.innerHTML = isTh ? '← กลับหน้าทีมชาย' : '← Back to Men\'s Team';
+      }
+    } else {
+      if (womenNavLink) womenNavLink.classList.add('active');
+      if (menNavLink) menNavLink.classList.remove('active');
+      if (backLink) {
+        backLink.href = 'women-team.html';
+        backLink.innerHTML = isTh ? '← กลับหน้าทีมหญิง' : '← Back to Women\'s Team';
+      }
+    }
+
+    const teamTitleText = isMen ? (isTh ? 'ทีมชาย' : "Men's Team") : (isTh ? 'ทีมหญิง' : "Women's Team");
+    document.title = `${player.name} - ${teamTitleText} - KARNLAKHRANGNAN Official`;
+    
+    let pos = formatPlayerPosition(player.position, isTh);
+    document.getElementById('playerPosition').textContent = pos;
+    const natEl = document.getElementById('playerNationality');
+    if (natEl) {
+      const nat = player.nationality || '';
+      const flagHtml = window.getFlagSpriteHTML ? window.getFlagSpriteHTML(nat) : '';
+      const natName = window.getCountryName ? window.getCountryName(nat, isTh ? 'th' : 'en') : nat;
+      natEl.innerHTML = `${flagHtml} <span>${natName || '--'}</span>`;
+    }
+    
+    // Personal Details
+    document.getElementById('playerDob').textContent = player.date_of_birth ? formatDate(player.date_of_birth, isTh ? 'th' : 'en') : '--';
+    document.getElementById('playerAge').textContent = player.age ? `(${player.age} ${isTh?'ปี':'yo'})` : '';
+    document.getElementById('playerHeight').textContent = player.height ? `${player.height} cm` : '--';
+    document.getElementById('playerFoot').textContent = player.foot || '--';
+    document.getElementById('playerJoined').textContent = player.joined ? formatDate(player.joined, isTh ? 'th' : 'en') : '--';
+    document.getElementById('playerSignedFrom').textContent = player.signed_from || '--';
+    
+    let mvText = '--';
+    if (player.market_value) {
+      if (player.market_value >= 1000000) {
+        mvText = '€' + (player.market_value / 1000000).toFixed(1) + 'M';
+      } else {
+        mvText = '€' + player.market_value.toLocaleString();
+      }
+    }
+    document.getElementById('playerMarketValue').textContent = mvText;
+    
+    // Stats
+    document.getElementById('statApps').textContent = player.appearances || 0;
+    document.getElementById('statGoals').textContent = player.goals || 0;
+    document.getElementById('statAssists').textContent = player.assists || 0;
+    
+    // Bio
+    let bioText = '';
+    if (player.biography_th || player.biography_en) {
+      bioText = isTh ? (player.biography_th || player.biography_en || '') : (player.biography_en || player.biography_th || '');
+    } else {
+      const rawBio = player.biography || player.bio;
+      if (rawBio) {
+        if (typeof rawBio === 'object' && rawBio !== null) {
+          bioText = isTh ? (rawBio.th || rawBio.en || '') : (rawBio.en || rawBio.th || '');
+        } else if (typeof rawBio === 'string') {
+          bioText = rawBio;
+        }
+      }
+    }
+
+    if (bioText) {
+      // Clean escape characters (\", \', \n\, \n, \t, etc.)
+      const normalizedBio = bioText
+        .replace(/\\"/g, '"')
+        .replace(/\\'/g, "'")
+        .replace(/\\n\\/g, '\n')
+        .replace(/\\n/g, '\n')
+        .replace(/\\r/g, '')
+        .replace(/\\t/g, ' ')
+        .replace(/\\/g, '');
+
+      const paragraphs = normalizedBio.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+      if (paragraphs.length > 0) {
+        document.getElementById('playerBio').innerHTML = paragraphs
+          .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+          .join('');
+      } else {
+        document.getElementById('playerBio').innerHTML = `<p>${normalizedBio.replace(/\n/g, '<br>')}</p>`;
+      }
+    } else {
+      document.getElementById('playerBio').innerHTML = `<p>${isTh ? 'ไม่มีข้อมูลชีวประวัติ' : 'No biography available.'}</p>`;
+    }
+    
+    // Social
+    if (player.instagram || player.twitter) {
+      document.getElementById('socialSection').style.display = 'block';
+      if (player.instagram) {
+        const igLink = document.getElementById('socialInstagram');
+        igLink.href = player.instagram.startsWith('http') ? player.instagram : `https://instagram.com/${player.instagram}`;
+        igLink.style.display = 'inline-block';
+      }
+      if (player.twitter) {
+        const twLink = document.getElementById('socialTwitter');
+        twLink.href = player.twitter.startsWith('http') ? player.twitter : `https://twitter.com/${player.twitter}`;
+        twLink.style.display = 'inline-block';
+      }
+    }
+    
+  } catch (e) {
+    console.error(e);
+    document.getElementById('playerName').textContent = 'Error Loading Player';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.pathname.includes('player-profile')) {
+    initPlayerProfile();
+  }
+});
+
+window.addEventListener('languageChanged', () => {
+  if (window.location.pathname.includes('player-profile')) {
+    initPlayerProfile();
+  }
+});
