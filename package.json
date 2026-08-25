@@ -1,0 +1,12 @@
+{
+  "name": "kanlakhrangnan-official",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --port 3000 --host 0.0.0.0",
+    "build": "mkdir -p dist && cp -r assets data databases icon lang the-story-blue trophy *.html dist/ 2>/dev/null || true"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}

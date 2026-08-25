@@ -1,0 +1,8 @@
+{
+  "name": "Karn La Khrang Nan Official",
+  "description": "A football story and stats application.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
